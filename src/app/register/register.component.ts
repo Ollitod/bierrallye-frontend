@@ -12,6 +12,7 @@ import {IStartblock} from '../shared/model/startblock.model';
 import {StartblockService} from '../shared/service/startblock.service';
 import {RegistrationService} from '../shared/service/registration.service';
 import {ITeam} from '../shared/model/team.model';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -43,29 +44,47 @@ export class RegisterComponent implements OnInit {
     // drink1: new FormControl(1, {validators: [Validators.required]}),
     // drink2: new FormControl(2, {validators: [Validators.required]}),
     // startblock: new FormControl(3, {validators: [Validators.required]}),
-    // email: new FormControl('oliver.tod@gepardec.com', {validators: [Validators.required, Validators.email]}),
+    // email: new FormControl('olivertod11@yahoo.de', {validators: [Validators.required, Validators.email]}),
     // dsgvoApproved: new FormControl(true, {validators: [Validators.required]})
   });
 
   drinks: IDrink[] = [];
   startblocks: IStartblock[] = [];
+  availableSpots: number = 0;
 
   constructor(
     private drinksService: DrinkService,
     private startblockService: StartblockService,
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private toastr: ToastrService
   ) {
   }
 
   ngOnInit(): void {
     this.drinksService.getDrinks().subscribe(drinks => this.drinks = drinks);
-    this.startblockService.getStartblocks().subscribe(startblocks => this.startblocks = startblocks);
+    this.startblockService.getStartblocks().subscribe(startblocks => {
+      this.startblocks = startblocks.startblocks;
+      this.availableSpots = startblocks.availableSpots;
+    });
   }
 
   sendRegistration(): void {
-    const successful = this.registrationService.register(this.registerForm.getRawValue() as ITeam);
-    if (successful) {
-      this.registerForm.reset();
-    }
+    this.registrationService.register(this.registerForm.getRawValue() as ITeam).subscribe(
+      res => {
+        this.registerForm.reset({
+          player1: '',
+          player2: '',
+          drink1: 0,
+          drink2: 0,
+          startblock: 0,
+          email: '',
+          dsgvoApproved: false
+        });
+        this.toastr.success('Die Anmeldung war erfolgreich.', 'Prost!');
+      },
+      error => {
+        this.toastr.error('Die Anmeldung war nicht erfolgreich.', 'Autsch!')
+      }
+    );
   }
 }

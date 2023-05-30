@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IDrink} from '../model/drink.model';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class DrinkService {
   }
 
   getDrinks(): Observable<IDrink[]> {
-    return of(drinks);
+    return this.http.get<IDrink[]>('http://81.173.84.153:8989/bierrallye/drinks');
   }
 }
 

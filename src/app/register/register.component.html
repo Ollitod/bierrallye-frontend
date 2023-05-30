@@ -11,19 +11,23 @@
     <mat-form-field>
       <mat-label>Getränk 1</mat-label>
       <mat-select formControlName="drink1" id="drink1">
-        <mat-option *ngFor="let drink of drinks" [value]="drink.id">{{drink.name}}</mat-option>
+        <mat-option *ngFor="let drink of drinks"
+                    [value]="drink.id">{{drink.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Getränk 2</mat-label>
       <mat-select formControlName="drink2" id="drink2">
-        <mat-option *ngFor="let drink of drinks" [value]="drink.id">{{drink.name}}</mat-option>
+        <mat-option *ngFor="let drink of drinks"
+                    [value]="drink.id">{{drink.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Startblock</mat-label>
       <mat-select formControlName="startblock" id="startblock">
-        <mat-option *ngFor="let startblock of startblocks" [value]="startblock.id">{{startblock.name}}</mat-option>
+        <mat-option *ngFor="let startblock of startblocks"
+                    [disabled]="startblock.availableSpots === 0"
+                    [value]="startblock.id">{{startblock.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
@@ -31,11 +35,11 @@
       <input formControlName="email" id="email" matInput type="email">
     </mat-form-field>
     <mat-checkbox formControlName="dsgvoApproved" id="dsgvoApproved" required>DSGVO</mat-checkbox>
-    <button [disabled]="!registerForm.valid"
-            type="submit"
+    <button (click)="sendRegistration()"
+            [disabled]="!registerForm.valid"
             color="primary"
             mat-raised-button
-            (click)="sendRegistration()">Abschicken
+            type="submit">Abschicken
     </button>
   </div>
 </form>
