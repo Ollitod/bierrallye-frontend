@@ -5,13 +5,15 @@ import {provideAnimations} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app/app-routing.module';
 import {bootstrapApplication, BrowserModule} from '@angular/platform-browser';
 import {provideHttpClient} from '@angular/common/http';
+import {provideToastr} from 'ngx-toastr';
 
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule, AppRoutingModule, MatTabsModule),
     provideAnimations(),
-    provideHttpClient()
+    provideHttpClient(),
+    provideToastr()
   ]
 })
   .catch(err => console.error(err));
