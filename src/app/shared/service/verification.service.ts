@@ -11,6 +11,6 @@ export class VerificationService {
   }
 
   verify(token: string): Observable<any> {
-    return this.http.get(`http://81.173.84.153:8989/bierrallye/verify?token=${token}`);
+    return this.http.get(`https://bierrallye.meinhard.at/bierrallye/verify?token=${token}`);
   }
 }

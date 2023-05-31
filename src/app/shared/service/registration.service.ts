@@ -12,6 +12,6 @@ export class RegistrationService {
   }
 
   register(team: ITeam): Observable<any> {
-    return this.http.post('http://81.173.84.153:8989/bierrallye/register', team);
+    return this.http.post('https://bierrallye.meinhard.at/bierrallye/register', team);
   }
 }
