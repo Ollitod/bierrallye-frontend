@@ -1,0 +1,22 @@
+@import "src/styles/colors";
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $bierrallye-black;
+  color: $bierrallye-lightbrown;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.header {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.info {
+  font-size: 36px
+}

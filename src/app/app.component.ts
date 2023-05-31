@@ -3,6 +3,7 @@ import {FooterComponent} from './footer/footer.component';
 import {InfoComponent} from './info/info.component';
 import {HeaderComponent} from './header/header.component';
 import {RouterOutlet} from '@angular/router';
+import {GeneralInfoComponent} from './general-info/general-info.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import {RouterOutlet} from '@angular/router';
     HeaderComponent,
     InfoComponent,
     FooterComponent,
-    RouterOutlet
+    RouterOutlet,
+    GeneralInfoComponent
   ]
 })
 export class AppComponent {

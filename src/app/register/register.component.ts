@@ -13,6 +13,7 @@ import {StartblockService} from '../shared/service/startblock.service';
 import {RegistrationService} from '../shared/service/registration.service';
 import {ITeam} from '../shared/model/team.model';
 import {ToastrService} from 'ngx-toastr';
+import {AvailableSpotsComponent} from '../available-spots/available-spots.component';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,8 @@ import {ToastrService} from 'ngx-toastr';
     MatSelectModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    AvailableSpotsComponent
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']

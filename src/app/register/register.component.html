@@ -1,45 +1,53 @@
-<form [formGroup]="registerForm">
-  <div class="form-container">
-    <mat-form-field>
-      <mat-label>Spieler 1</mat-label>
-      <input formControlName="player1" id="player1" matInput>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Spieler 2</mat-label>
-      <input formControlName="player2" id="player2" matInput>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Getränk 1</mat-label>
-      <mat-select formControlName="drink1" id="drink1">
-        <mat-option *ngFor="let drink of drinks"
-                    [value]="drink.id">{{drink.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Getränk 2</mat-label>
-      <mat-select formControlName="drink2" id="drink2">
-        <mat-option *ngFor="let drink of drinks"
-                    [value]="drink.id">{{drink.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Startblock</mat-label>
-      <mat-select formControlName="startblock" id="startblock">
-        <mat-option *ngFor="let startblock of startblocks"
-                    [disabled]="startblock.availableSpots === 0"
-                    [value]="startblock.id">{{startblock.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input formControlName="email" id="email" matInput type="email">
-    </mat-form-field>
-    <mat-checkbox formControlName="dsgvoApproved" id="dsgvoApproved" required>DSGVO</mat-checkbox>
-    <button (click)="sendRegistration()"
-            [disabled]="!registerForm.valid"
-            color="primary"
-            mat-raised-button
-            type="submit">Abschicken
-    </button>
+<div class="grid-container">
+  <div class="spots-container">
+    <app-available-spots [availableSpots]="availableSpots"
+                         [totalSpots]="90"/>
   </div>
-</form>
+  <form [formGroup]="registerForm">
+    <div class="form-container">
+      <mat-form-field>
+        <mat-label>Spieler 1</mat-label>
+        <input formControlName="player1" id="player1" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Spieler 2</mat-label>
+        <input formControlName="player2" id="player2" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Getränk 1</mat-label>
+        <mat-select formControlName="drink1" id="drink1">
+          <mat-option *ngFor="let drink of drinks"
+                      [value]="drink.id">{{drink.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Getränk 2</mat-label>
+        <mat-select formControlName="drink2" id="drink2">
+          <mat-option *ngFor="let drink of drinks"
+                      [value]="drink.id">{{drink.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Startblock</mat-label>
+        <mat-select formControlName="startblock" id="startblock">
+          <mat-option *ngFor="let startblock of startblocks"
+                      [disabled]="startblock.availableSpots === 0"
+                      [value]="startblock.id">{{startblock.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" id="email" matInput type="email">
+      </mat-form-field>
+      <mat-checkbox formControlName="dsgvoApproved" id="dsgvoApproved" required style="padding-bottom: 22px">
+        DSGVO
+      </mat-checkbox>
+      <button (click)="sendRegistration()"
+              [disabled]="!registerForm.valid"
+              color="primary"
+              mat-raised-button
+              type="submit">Abschicken
+      </button>
+    </div>
+  </form>
+</div>

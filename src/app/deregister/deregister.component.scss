@@ -1,5 +1,14 @@
+@import "src/styles/colors";
+
+.container {
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
+  background-color: $bierrallye-lightbrown;
   padding: 15px;
+  box-sizing: border-box;
 }
