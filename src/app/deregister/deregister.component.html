@@ -1,1 +1,15 @@
-<p>deregister works!</p>
+<form [formGroup]="deregisterForm">
+  <div class="form-container">
+    <mat-form-field>
+      <mat-label>Abmelde-Token</mat-label>
+      <input formControlName="token" id="token" matInput>
+    </mat-form-field>
+    <button (click)="deregister()"
+            [disabled]="!deregisterForm.valid"
+            color="primary"
+            mat-raised-button
+            type="submit">
+      Abmelden
+    </button>
+  </div>
+</form>
