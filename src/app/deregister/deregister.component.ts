@@ -34,10 +34,14 @@ export class DeregisterComponent {
   deregister(): void {
     this.deregisterService.deregister(this.deregisterForm.getRawValue()).subscribe(
       res => {
-        this.toastr.success('Schade, dass ihr eure Teilnahme storniert habt.', 'Erfolgreich');
+        this.toastr.success('Schade, dass ihr eure Teilnahme storniert habt', 'Erfolgreich');
       },
       error => {
-        this.toastr.error('Das hat nicht geklappt.', 'Fehler');
+        if (error.status === 400) {
+          this.toastr.warning('Ihr habt euch bereits abgemeldet', 'Achtung');
+        } else {
+          this.toastr.error('Ein unbekannter Fehler ist aufgetreten', 'Fehler');
+        }
       }
     );
   }

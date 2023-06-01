@@ -14,6 +14,8 @@ import {switchMap} from 'rxjs';
 })
 export class VerificationComponent implements OnInit {
 
+  successful = false;
+
   constructor(
     private route: ActivatedRoute,
     private verificationService: VerificationService,
@@ -28,10 +30,16 @@ export class VerificationComponent implements OnInit {
       })
     ).subscribe(
       res => {
-        this.toastr.success('Ihr habt euch erfolgreich verifiziert.', 'Erfolgreich');
+        this.successful = true;
+        this.toastr.success(res, 'Erfolgreich');
       },
       error => {
-        this.toastr.error('Das hat nicht geklappt.', 'Fehler');
+        if (error.status === 400) {
+          this.successful = true;
+          this.toastr.warning(error.error, 'Achtung');
+        } else {
+          this.toastr.error('Ein unbekannter Fehler ist aufgetreten', 'Fehler');
+        }
       }
     )
   }

@@ -1,0 +1,51 @@
+@use '@angular/material' as mat;
+@import '../../node_modules/@angular/material/theming';
+@import "src/styles/colors";
+
+/* For use in src/lib/core/theming/_palette.scss */
+$bierrallye-palette: (
+  50 : #e5e5e5,
+  100 : #bebebe,
+  200 : #929293,
+  300 : #666668,
+  400 : #464647,
+  500 : #252527,
+  600 : #212123,
+  700 : #1b1b1d,
+  800 : #161617,
+  900 : #0d0d0e,
+  A100 : #eb6969,
+  A200 : #e53c3c,
+  A400 : #ee0000,
+  A700 : #d40000,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$bierrallye-primary: mat.define-palette($bierrallye-palette);
+$bierrallye-accent: mat.define-palette($bierrallye-palette, A100);
+
+$bierrallye-theme: mat.define-light-theme((
+  color: (
+    primary: $bierrallye-primary,
+    accent: $bierrallye-accent,
+  ),
+  //typography: $gepardec-typography-config,
+  //density: 0,
+));
+
+@include mat.all-component-themes($bierrallye-theme);

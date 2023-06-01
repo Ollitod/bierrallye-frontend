@@ -1,0 +1,8 @@
+.content-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 15px;
+  overflow: scroll;
+  box-sizing: border-box;
+}

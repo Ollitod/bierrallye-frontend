@@ -13,6 +13,7 @@ import {StartblockService} from '../shared/service/startblock.service';
 import {RegistrationService} from '../shared/service/registration.service';
 import {ITeam} from '../shared/model/team.model';
 import {ToastrService} from 'ngx-toastr';
+import {AvailableSpotsComponent} from '../available-spots/available-spots.component';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,8 @@ import {ToastrService} from 'ngx-toastr';
     MatSelectModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    AvailableSpotsComponent
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
@@ -50,6 +52,7 @@ export class RegisterComponent implements OnInit {
 
   drinks: IDrink[] = [];
   startblocks: IStartblock[] = [];
+  totalSpots: number = 0;
   availableSpots: number = 0;
 
   constructor(
@@ -80,10 +83,10 @@ export class RegisterComponent implements OnInit {
           email: '',
           dsgvoApproved: false
         });
-        this.toastr.success('Die Anmeldung war erfolgreich.', 'Prost!');
+        this.toastr.success('Die Anmeldung war erfolgreich', 'Prost!');
       },
       error => {
-        this.toastr.error('Die Anmeldung war nicht erfolgreich.', 'Autsch!')
+        this.toastr.error('Die Anmeldung war nicht erfolgreich', 'Fehler')
       }
     );
   }

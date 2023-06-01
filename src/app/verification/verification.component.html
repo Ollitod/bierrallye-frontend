@@ -1,1 +1,8 @@
-<p>verification works!</p>
+<div *ngIf="successful">
+  <p class="header">Prost! Ihr seid startklar!</p>
+</div>
+
+<div *ngIf="!successful">
+  <p class="header">Ohje! Das hat nicht geklappt.</p>
+  <p class="description">Bitte wende dich an office@bierrallye-irnfritz.at</p>
+</div>
