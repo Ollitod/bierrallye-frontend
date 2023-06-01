@@ -10,7 +10,7 @@ export class VerificationService {
   constructor(private http: HttpClient) {
   }
 
-  verify(token: string): Observable<any> {
-    return this.http.get(`https://bierrallye.meinhard.at/bierrallye/verify?token=${token}`);
+  verify(token: string): Observable<string> {
+    return this.http.get<string>(`https://bierrallye.meinhard.at/bierrallye/verify?token=${token}`);
   }
 }
