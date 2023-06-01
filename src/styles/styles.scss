@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "src/styles/colors";
 
+$font-size-header-large: 84px;
+$font-size-header-small: 42px;
+
+$font-size-text-large: 28px;
+$font-size-text-small: 14px;
+
 @font-face {
   font-family: Ultra;
   src: url(../assets/fonts/ultra/Ultra.ttf);
@@ -14,4 +20,27 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: $bierrallye-brown;
+}
+
+.description {
+  font-size: $font-size-text-large;
+  line-height: normal;
+}
+
+@media only screen and (max-width: 767px) {
+  .description {
+    font-size: $font-size-text-small;
+  }
+}
+
+.header {
+  font-family: Ultra;
+  font-size: $font-size-header-large;
+  line-height: normal;
+}
+
+@media only screen and (max-width: 767px) {
+  .header {
+    font-size: $font-size-header-small;
+  }
 }

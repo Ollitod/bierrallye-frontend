@@ -5,9 +5,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 25px;
-
+  gap: 15px;
   padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .sub-container {
@@ -15,12 +15,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-}
-
-.header {
-  font-family: Ultra;
-  font-size: 64px;
-  line-height: 64px;
+  gap: 10px;
 }
 
 .step {
@@ -30,13 +25,24 @@
   gap: 20px;
 }
 
-.description {
-  font-size: 24px;
-  line-height: 24px;
+.two-row-description {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .sub-description {
   font-size: 16px;
-  line-height: 16px;
+  line-height: normal;
 }
 
+@media only screen and (max-width: 767px) {
+  .sub-description {
+    font-size: 7px;
+  }
+
+  img {
+    height: 25px;
+    width: 25px;
+  }
+}

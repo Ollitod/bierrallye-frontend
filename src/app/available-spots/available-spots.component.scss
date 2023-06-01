@@ -9,14 +9,31 @@
   padding: 15px;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 15px;
+  box-sizing: border-box;
 }
 
-.header {
+.title {
   font-size: 48px;
   font-weight: bold;
+  line-height: normal;
 }
 
 .info {
-  font-size: 36px
+  font-size: 36px;
+  line-height: normal;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    gap: 5px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .info {
+    font-size: 18px;
+  }
 }

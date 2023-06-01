@@ -28,3 +28,13 @@
 .form-container > * {
   box-sizing: border-box;
 }
+
+@media only screen and (max-width: 767px) {
+  .grid-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 15px;
+    box-sizing: border-box;
+  }
+}
