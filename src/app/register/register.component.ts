@@ -82,10 +82,10 @@ export class RegisterComponent implements OnInit {
           email: '',
           dsgvoApproved: false
         });
-        this.toastr.success('Die Anmeldung war erfolgreich.', 'Prost!');
+        this.toastr.success('Die Anmeldung war erfolgreich', 'Prost!');
       },
       error => {
-        this.toastr.error('Die Anmeldung war nicht erfolgreich.', 'Autsch!')
+        this.toastr.error('Die Anmeldung war nicht erfolgreich', 'Fehler')
       }
     );
   }
