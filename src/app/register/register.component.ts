@@ -52,6 +52,7 @@ export class RegisterComponent implements OnInit {
 
   drinks: IDrink[] = [];
   startblocks: IStartblock[] = [];
+  totalSpots: number = 0;
   availableSpots: number = 0;
 
   constructor(
