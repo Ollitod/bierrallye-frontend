@@ -67,6 +67,7 @@ export class RegisterComponent implements OnInit {
     this.drinksService.getDrinks().subscribe(drinks => this.drinks = drinks);
     this.startblockService.getStartblocks().subscribe(startblocks => {
       this.startblocks = startblocks.startblocks;
+      this.totalSpots = startblocks.totalSpots;
       this.availableSpots = startblocks.availableSpots;
     });
   }

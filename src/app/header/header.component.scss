@@ -1,10 +1,33 @@
 @import "src/styles/colors";
 
 .banner {
-  height: 25%;
   background-color: $bierrallye-black;
   display: flex;
   justify-content: center;
   cursor: pointer;
   overflow: hidden;
+}
+
+.small-banner {
+  display: none;
+}
+
+@media only screen and (max-width: 1360px) {
+  .banner {
+    height: 25%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .banner {
+    height: auto;
+  }
+
+  .large-banner {
+    display: none;
+  }
+
+  .small-banner {
+    display: block;
+  }
 }
