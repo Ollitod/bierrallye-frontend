@@ -4,6 +4,7 @@ import {VerificationComponent} from './verification/verification.component';
 import {ImpressumComponent} from './impressum/impressum.component';
 import {ContentComponent} from './content/content.component';
 import {AdminComponent} from './admin/admin.component';
+import {loginGuard} from './shared/guards/login.guard';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate: [loginGuard]
   }
 ];
 
