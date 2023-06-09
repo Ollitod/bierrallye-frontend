@@ -16,6 +16,6 @@ export class RegistrationService {
   }
 
   getRegistrations(): Observable<IRegistration[]> {
-    return this.http.get<IRegistration[]>('https://bierrallye.meinhard.at/bierrallye/completion/registrations');
+    return this.http.get<IRegistration[]>('https://bierrallye.meinhard.at/completion/registrations');
   }
 }

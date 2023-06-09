@@ -12,6 +12,6 @@ export class TeamService {
   }
 
   create(team: ITeam): Observable<any> {
-    return this.http.post('https://bierrallye.meinhard.at/bierrallye/completion/team', team);
+    return this.http.post('https://bierrallye.meinhard.at/completion/team', team);
   }
 }
