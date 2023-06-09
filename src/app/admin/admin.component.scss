@@ -1,0 +1,17 @@
+@import "src/styles/colors";
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $bierrallye-lightbrown;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.green {
+  color: #007a53;
+}
+
+.red {
+  color: #e30413;
+}

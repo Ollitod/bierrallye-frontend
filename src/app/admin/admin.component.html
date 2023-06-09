@@ -1,0 +1,58 @@
+<gpx-dynamic-table [columnSpecs]="columnSpecs"
+                   [columnsExcludedFromSort]="['drink1', 'drink2', 'startblock', 'apply']"
+                   [data]="registrations"
+                   [rowColor]="'#FDF1CD'">
+
+  <ng-template [gpxCustomColumn]="'active'" let-registration>
+    <ng-container *ngIf="registration.active">
+      <mat-icon class="green">check_circle</mat-icon>
+    </ng-container>
+    <ng-container *ngIf="!registration.active">
+      <mat-icon class="red">cancel</mat-icon>
+    </ng-container>
+  </ng-template>
+
+  <ng-template [gpxCustomColumn]="'drink1'" let-registration>
+    {{getDrinkName(registration.drink1)}}
+  </ng-template>
+
+  <ng-template [gpxCustomColumn]="'drink2'" let-registration>
+    {{getDrinkName(registration.drink2)}}
+  </ng-template>
+
+  <ng-template [gpxCustomColumn]="'startblock'" let-registration>
+    {{getStartblockName(registration.startblock)}}
+  </ng-template>
+
+  <ng-template [gpxCustomColumn]="'apply'" let-registration>
+    <button (click)="fillTeam(registration)" mat-raised-button>
+      <mat-icon>start</mat-icon>
+    </button>
+  </ng-template>
+</gpx-dynamic-table>
+
+<ng-container *ngIf="currentRegistration">
+  <form [formGroup]="teamForm">
+    <div class="form-container">
+      <mat-form-field>
+        <mat-label>Spieler 1</mat-label>
+        <input formControlName="player1" id="player1" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Spieler 2</mat-label>
+        <input formControlName="player2" id="player2" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Chip</mat-label>
+        <input formControlName="chip" id="chip" matInput>
+      </mat-form-field>
+      <button (click)="createTeam()"
+              [disabled]="!teamForm.valid"
+              color="primary"
+              mat-raised-button
+              type="submit">
+        Team erstellen
+      </button>
+    </div>
+  </form>
+</ng-container>
