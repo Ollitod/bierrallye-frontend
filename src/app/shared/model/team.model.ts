@@ -1,5 +1,5 @@
 export interface ITeam {
-  player1: string;
-  player2: string;
-  chip: string;
+  teamFirstMember: string;
+  teamSecondMember: string;
+  chipId: string;
 }

@@ -36,15 +36,15 @@
     <div class="form-container">
       <mat-form-field>
         <mat-label>Spieler 1</mat-label>
-        <input formControlName="player1" id="player1" matInput>
+        <input formControlName="teamFirstMember" id="teamFirstMember" matInput>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Spieler 2</mat-label>
-        <input formControlName="player2" id="player2" matInput>
+        <input formControlName="teamSecondMember" id="teamSecondMember" matInput>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Chip</mat-label>
-        <input formControlName="chip" id="chip" matInput>
+        <input formControlName="chipId" id="chipId" matInput>
       </mat-form-field>
       <button (click)="createTeam()"
               [disabled]="!teamForm.valid"

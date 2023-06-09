@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ITeam} from '../model/team.model';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,6 @@ export class TeamService {
   }
 
   create(team: ITeam): Observable<any> {
-    return of('haha');
+    return this.http.post('https://bierrallye.meinhard.at/bierrallye/completion/team', team);
   }
 }

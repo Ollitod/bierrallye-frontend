@@ -10,10 +10,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import {IDrink} from '../shared/model/drink.model';
-import {IStartblock} from '../shared/model/startblock.model';
-import {DrinkService} from '../shared/service/drink.service';
-import {StartblockService} from '../shared/service/startblock.service';
 import {ITeam} from '../shared/model/team.model';
 import {TeamService} from '../shared/service/team.service';
 import {ToastrService} from 'ngx-toastr';
@@ -68,9 +64,9 @@ export class AdminComponent implements OnInit {
   registrations: IRegistration[] = [];
 
   teamForm = new FormGroup({
-    player1: new FormControl('', {validators: [Validators.required]}),
-    player2: new FormControl('', {validators: [Validators.required]}),
-    chip: new FormControl('', {validators: [Validators.required]}),
+    teamFirstMember: new FormControl('', {validators: [Validators.required]}),
+    teamSecondMember: new FormControl('', {validators: [Validators.required]}),
+    chipId: new FormControl('', {validators: [Validators.required]}),
   });
 
   constructor(
@@ -89,10 +85,10 @@ export class AdminComponent implements OnInit {
 
   fillTeam(registration: IRegistration): void {
     this.currentRegistration = registration;
-    this.teamForm.controls.player1.setValue(registration.player1);
-    this.teamForm.controls.player2.setValue(registration.player2);
-    this.teamForm.controls.player1.disable();
-    this.teamForm.controls.player2.disable();
+    this.teamForm.controls.teamFirstMember.setValue(registration.player1);
+    this.teamForm.controls.teamSecondMember.setValue(registration.player2);
+    this.teamForm.controls.teamFirstMember.disable();
+    this.teamForm.controls.teamSecondMember.disable();
   }
 
   createTeam() {
