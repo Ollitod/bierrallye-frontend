@@ -1,4 +1,4 @@
-export interface ITeam {
+export interface IRegistration {
   player1: string;
   player2: string;
   drink1: number;

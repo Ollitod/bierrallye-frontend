@@ -11,7 +11,7 @@ import {IDrink} from '../shared/model/drink.model';
 import {IStartblock} from '../shared/model/startblock.model';
 import {StartblockService} from '../shared/service/startblock.service';
 import {RegistrationService} from '../shared/service/registration.service';
-import {ITeam} from '../shared/model/team.model';
+import {IRegistration} from '../shared/model/registration.model';
 import {ToastrService} from 'ngx-toastr';
 import {AvailableSpotsComponent} from '../available-spots/available-spots.component';
 
@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
   }
 
   sendRegistration(): void {
-    this.registrationService.register(this.registerForm.getRawValue() as ITeam).subscribe(
+    this.registrationService.register(this.registerForm.getRawValue() as IRegistration).subscribe(
       res => {
         this.registerForm.reset({
           player1: '',
