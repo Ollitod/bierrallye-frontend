@@ -17,6 +17,7 @@ import {StartblockService} from '../shared/service/startblock.service';
 import {ITeam} from '../shared/model/team.model';
 import {TeamService} from '../shared/service/team.service';
 import {ToastrService} from 'ngx-toastr';
+import {RegistrationService} from '../shared/service/registration.service';
 
 @Component({
   selector: 'app-admin',
@@ -62,12 +63,9 @@ export class AdminComponent implements OnInit {
     }
   ];
 
-  protected readonly registrations = registrations;
-
   currentRegistration: IRegistration | undefined = undefined;
 
-  drinks: IDrink[] = [];
-  startblocks: IStartblock[] = [];
+  registrations: IRegistration[] = [];
 
   teamForm = new FormGroup({
     player1: new FormControl('', {validators: [Validators.required]}),
@@ -76,17 +74,16 @@ export class AdminComponent implements OnInit {
   });
 
   constructor(
-    private drinksService: DrinkService,
-    private startblockService: StartblockService,
+    private registrationService: RegistrationService,
     private teamService: TeamService,
     private toastr: ToastrService
   ) {
   }
 
   ngOnInit(): void {
-    this.drinksService.getDrinks().subscribe(drinks => this.drinks = drinks);
-    this.startblockService.getStartblocks().subscribe(startblocks => {
-      this.startblocks = startblocks.startblocks;
+    this.registrationService.getRegistrations().subscribe(registrations => {
+      this.registrations = registrations;
+      console.log(registrations);
     });
   }
 
@@ -110,48 +107,4 @@ export class AdminComponent implements OnInit {
       }
     );
   }
-
-  getDrinkName(id: number): string | undefined {
-    return this.drinks.find(drink => drink.id === id)?.name;
-  }
-
-  getStartblockName(id: number): string | undefined {
-    return this.startblocks.find(startblock => startblock.id === id)?.name;
-  }
 }
-
-const registrations: IRegistration[] = [
-  {
-    player1: 'Oliver',
-    player2: 'Johannes',
-    drink1: 1,
-    drink2: 2,
-    email: 'olivertod11@yahoo.de',
-    startblock: 1,
-    active: true,
-    dsgvoApproved: true,
-    uuid: '1234-5678'
-  },
-  {
-    player1: 'Fabio',
-    player2: 'Lukas',
-    drink1: 3,
-    drink2: 4,
-    email: 'irgendwas@yahoo.de',
-    startblock: 2,
-    active: true,
-    dsgvoApproved: true,
-    uuid: '4321-5678'
-  },
-  {
-    player1: 'Philipp',
-    player2: 'Simon',
-    drink1: 5,
-    drink2: 5,
-    email: 'nochmal-irgendwas@yahoo.de',
-    startblock: 3,
-    active: false,
-    dsgvoApproved: true,
-    uuid: '1234-8765'
-  }
-]

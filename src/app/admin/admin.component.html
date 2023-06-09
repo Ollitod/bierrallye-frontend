@@ -13,19 +13,19 @@
   </ng-template>
 
   <ng-template [gpxCustomColumn]="'drink1'" let-registration>
-    {{getDrinkName(registration.drink1)}}
+    {{registration.drink1.name}}
   </ng-template>
 
   <ng-template [gpxCustomColumn]="'drink2'" let-registration>
-    {{getDrinkName(registration.drink2)}}
+    {{registration.drink2.name}}
   </ng-template>
 
   <ng-template [gpxCustomColumn]="'startblock'" let-registration>
-    {{getStartblockName(registration.startblock)}}
+    {{registration.startblock.name}}
   </ng-template>
 
   <ng-template [gpxCustomColumn]="'apply'" let-registration>
-    <button (click)="fillTeam(registration)" mat-raised-button>
+    <button (click)="fillTeam(registration)" mat-raised-button [disabled]="!registration.active">
       <mat-icon>start</mat-icon>
     </button>
   </ng-template>
