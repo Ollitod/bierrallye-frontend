@@ -13,7 +13,7 @@ export class StartblockService {
   }
 
   getStartblocks(): Observable<IStartblockWrapper> {
-    return this.http.get<IStartblockWrapper>('https://bierrallye.meinhard.at/bierrallye/blocks');
+    return this.http.get<IStartblockWrapper>('https://bierrallye.meinhard.at/registration/blocks');
   }
 }
 

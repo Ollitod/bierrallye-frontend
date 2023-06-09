@@ -12,7 +12,7 @@ export class DrinkService {
   }
 
   getDrinks(): Observable<IDrink[]> {
-    return this.http.get<IDrink[]>('https://bierrallye.meinhard.at/bierrallye/drinks');
+    return this.http.get<IDrink[]>('https://bierrallye.meinhard.at/registration/drinks');
   }
 }
 

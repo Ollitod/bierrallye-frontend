@@ -11,6 +11,6 @@ export class DeregisterService {
   }
 
   deregister(token: any): Observable<any> {
-    return this.http.get<boolean>(`https://bierrallye.meinhard.at/bierrallye/unsubscribe?token=${token.token}`);
+    return this.http.get<boolean>(`https://bierrallye.meinhard.at/registration/unsubscribe?token=${token.token}`);
   }
 }
