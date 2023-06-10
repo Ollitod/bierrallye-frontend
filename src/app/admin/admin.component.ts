@@ -79,7 +79,6 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.registrationService.getRegistrations().subscribe(registrations => {
       this.registrations = registrations;
-      console.log(registrations);
     });
   }
 
@@ -99,7 +98,6 @@ export class AdminComponent implements OnInit {
         this.toastr.success('Das Team ist startklar', 'Prost!');
       },
       error => {
-        console.log(error);
         if (error.error) {
           this.toastr.error(error.error, 'Fehler');
         } else {

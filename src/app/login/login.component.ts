@@ -33,13 +33,11 @@ export class LoginComponent {
   login(): void {
     this.authService.login(this.loginForm.getRawValue() as IAuth).subscribe(
       response => {
-        console.log(response);
         localStorage.setItem('token', response.token);
         this.router.navigate(['/admin']);
         this.toastr.success('Login erfolgreich', 'Erfolgreich');
       },
       error => {
-        console.log(error);
         this.toastr.error('Username/Passwort falsch', 'Fehler');
       }
     );
