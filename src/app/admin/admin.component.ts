@@ -102,8 +102,9 @@ export class AdminComponent implements OnInit {
         console.log(error);
         if (error.error) {
           this.toastr.error(error.error, 'Fehler');
+        } else {
+          this.toastr.error('Beim anlegen des Teams ist ein unbekannter Fehler aufgetreten', 'Fehler');
         }
-        this.toastr.error('Beim anlegen des Teams ist ein unbekannter Fehler aufgetreten', 'Fehler');
       }
     );
   }
