@@ -5,8 +5,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {ToastrService} from 'ngx-toastr';
-import {LoginService} from '../shared/service/login.service';
+import {AuthService} from '../shared/service/auth.service';
 import {Router} from '@angular/router';
+import {IAuth} from '../shared/model/auth.model';
 
 @Component({
   selector: 'app-login',
@@ -23,19 +24,22 @@ export class LoginComponent {
   });
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private toastr: ToastrService,
     private router: Router
   ) {
   }
 
   login(): void {
-    this.loginService.login().subscribe(
-      res => {
+    this.authService.login(this.loginForm.getRawValue() as IAuth).subscribe(
+      response => {
+        console.log(response);
+        localStorage.setItem('token', response.token);
         this.router.navigate(['/admin']);
         this.toastr.success('Login erfolgreich', 'Erfolgreich');
       },
       error => {
+        console.log(error);
         this.toastr.error('Username/Passwort falsch', 'Fehler');
       }
     );
