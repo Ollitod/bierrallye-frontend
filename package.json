@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "serve:local-ip-macos": "ng serve --host $(ifconfig | grep \"inet \" | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n1)",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
