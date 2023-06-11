@@ -1,17 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {ITeam} from '../model/team.model';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VerificationService {
+export class TeamService {
 
   constructor(private http: HttpClient) {
   }
 
-  verify(token: string): Observable<string> {
-    return this.http.get(`https://bierrallye.meinhard.at/registration/verify?token=${token}`,
+  create(team: ITeam): Observable<string> {
+    return this.http.post('https://bierrallye.meinhard.at/completion/team', team,
       {
         responseType: 'text'
       }

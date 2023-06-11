@@ -37,11 +37,9 @@ export class VerificationComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        console.log(error);
         if (error.status === 400) {
           this.toastr.warning(error.error, 'Achtung');
         } else {
-          console.log(error.status);
           this.toastr.error('Ein unbekannter Fehler ist aufgetreten', 'Fehler');
         }
       }
