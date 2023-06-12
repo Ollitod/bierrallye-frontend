@@ -64,9 +64,12 @@ export class AdminComponent implements OnInit {
   registrations: IRegistration[] = [];
 
   teamForm = new FormGroup({
-    teamFirstMember: new FormControl('', {validators: [Validators.required]}),
-    teamSecondMember: new FormControl('', {validators: [Validators.required]}),
-    chipId: new FormControl('', {validators: [Validators.required]}),
+    teamFirstMember: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
+    teamSecondMember: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
+    uuid: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
+    startblock: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
+    email: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
+    boxId: new FormControl<number | null>(null, {validators: [Validators.required]}),
   });
 
   constructor(
@@ -84,10 +87,12 @@ export class AdminComponent implements OnInit {
 
   fillTeam(registration: IRegistration): void {
     this.currentRegistration = registration;
-    this.teamForm.controls.teamFirstMember.setValue(registration.player1);
-    this.teamForm.controls.teamSecondMember.setValue(registration.player2);
-    this.teamForm.controls.teamFirstMember.disable();
-    this.teamForm.controls.teamSecondMember.disable();
+    this.teamForm.patchValue({
+      ...registration,
+      teamFirstMember: registration.player1,
+      teamSecondMember: registration.player2,
+      startblock: (registration.startblock as any).name
+    });
   }
 
   createTeam() {

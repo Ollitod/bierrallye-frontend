@@ -43,8 +43,20 @@
         <input formControlName="teamSecondMember" id="teamSecondMember" matInput>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Chip</mat-label>
-        <input formControlName="chipId" id="chipId" matInput>
+        <mat-label>UUID</mat-label>
+        <input formControlName="uuid" id="uuid" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Startblock</mat-label>
+        <input formControlName="startblock" id="startblock" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" id="email" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Box-Nr.</mat-label>
+        <input formControlName="boxId" id="boxId" matInput>
       </mat-form-field>
       <button (click)="createTeam()"
               [disabled]="!teamForm.valid"
