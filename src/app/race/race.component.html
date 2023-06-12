@@ -1,5 +1,55 @@
-<button mat-raised-button (click)="setOpen()">Open camera</button>
+<div class="race-container">
+  <h1>
+    {{team.startblock}}
+  </h1>
 
-<ng-container *ngIf="open">
-  <webcam [allowCameraSwitch]="false" [videoOptions]="videoOptions"/>
-</ng-container>
+  <div class="player-container">
+    <div class="player-info">
+      {{team.teamFirstMember}}
+    </div>
+    <div class="player-info">
+      {{team.teamSecondMember}}
+    </div>
+  </div>
+
+  <div class="checkin">
+    <div class="race-info">
+      <button *ngIf="!team.teamStartTime"
+              class="trigger-scan"
+              color="green"
+              mat-raised-button
+              (click)="openScannerCheckin()">START
+      </button>
+      <div *ngIf="scannerOpenCheckin">
+        <ng-container *ngTemplateOutlet="scanner"/>
+      </div>
+      <div class="checkin-info green" *ngIf="team.teamStartTime">
+        <p>Startzeit</p>
+        <p>{{team.teamStartTime | date: 'HH:mm:ss' }} Uhr</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout">
+    <div class="race-info">
+      <button *ngIf="!team.teamEndTime"
+              class="trigger-scan"
+              color="red"
+              mat-raised-button
+              (click)="openScannerCheckout()">ZIEL
+      </button>
+      <div *ngIf="scannerOpenCheckout">
+        <ng-container *ngTemplateOutlet="scanner"/>
+      </div>
+    </div>
+    <div class="checkout-info red" *ngIf="team.teamEndTime">
+      <p>Zielzeit</p>
+      <p>{{team.teamEndTime | date: 'HH:mm:ss' }} Uhr</p>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #scanner>
+  <webcam [allowCameraSwitch]="false" [width]="325" [height]="325" [videoOptions]="videoOptions"/>
+</ng-template>
