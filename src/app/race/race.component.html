@@ -1,0 +1,5 @@
+<button mat-raised-button (click)="setOpen()">Open camera</button>
+
+<ng-container *ngIf="open">
+  <webcam [allowCameraSwitch]="false" [videoOptions]="videoOptions"/>
+</ng-container>
