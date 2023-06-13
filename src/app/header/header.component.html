@@ -1,6 +1,11 @@
-<div class="banner" [routerLink]="'/'">
+<div *ngIf="!user" class="banner" [routerLink]="'/'">
   <img class="large-banner"
        src="assets/banner/header_with_background.png">
   <img class="small-banner"
        src="assets/banner/header_with_background_small.png">
+</div>
+
+<div class="user-info" *ngIf="user">
+  <span>Eingeloggt als {{user.username}}</span>
+  <button mat-raised-button color="primary">Abmelden</button>
 </div>
