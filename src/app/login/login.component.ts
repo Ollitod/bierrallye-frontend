@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import {AuthService} from '../shared/service/auth.service';
 import {Router} from '@angular/router';
 import {IAuth} from '../shared/model/auth.model';
+import {TokenService} from '../shared/service/token.service';
 
 @Component({
   selector: 'app-login',
@@ -26,14 +27,15 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {
   }
 
-  login(): void {
-    this.authService.login(this.loginForm.getRawValue() as IAuth).subscribe(
+  authenticate(): void {
+    this.authService.authenticate(this.loginForm.getRawValue() as IAuth).subscribe(
       response => {
-        localStorage.setItem('token', response.token);
+        this.tokenService.storeToken(response.token);
         this.router.navigate(['/admin']);
         this.toastr.success('Login erfolgreich', 'Erfolgreich');
       },
