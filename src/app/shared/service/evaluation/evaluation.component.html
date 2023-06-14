@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Auswertung Bierrallye 2023</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="pt-15">
+    <gpx-expandable-dynamic-table [columnSpecs]="columnsSpecs"
+                                  [data]="evaluations">
+      <ng-template gpxExpansionContent let-evaluation>
+        <gpx-dynamic-table [columnSpecs]="detailColumnSpecs"
+                           [data]="evaluation.stationEvaluation"
+                           [disablePaginator]="true"/>
+      </ng-template>
+    </gpx-expandable-dynamic-table>
+  </mat-card-content>
+</mat-card>

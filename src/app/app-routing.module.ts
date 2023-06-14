@@ -7,6 +7,7 @@ import {AdminComponent} from './admin/admin.component';
 import {authGuard} from './shared/guards/auth.guard';
 import {LoginComponent} from './login/login.component';
 import {RaceComponent} from './race/race.component';
+import {EvaluationComponent} from './shared/service/evaluation/evaluation.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
     path: 'race',
     component: RaceComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'evaluation',
+    component: EvaluationComponent
   }
 ];
 
