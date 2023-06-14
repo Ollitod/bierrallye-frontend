@@ -9,6 +9,7 @@ import {AuthService} from '../shared/service/auth.service';
 import {Router} from '@angular/router';
 import {IAuth} from '../shared/model/auth.model';
 import {TokenService} from '../shared/service/token.service';
+import {UserService} from '../shared/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private userService: UserService
   ) {
   }
 
@@ -38,6 +40,7 @@ export class LoginComponent {
         this.tokenService.storeToken(response.token);
         this.router.navigate(['/admin']);
         this.toastr.success('Login erfolgreich', 'Erfolgreich');
+        this.userService.loginUser();
       },
       error => {
         this.toastr.error('Username/Passwort falsch', 'Fehler');

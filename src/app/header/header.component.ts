@@ -1,21 +1,36 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {IUser} from '../shared/model/user.model';
-import {Role} from '../shared/model/role';
+import {UserService} from '../shared/service/user.service';
+import {Subscription} from 'rxjs';
 
 @Component({
-    selector: 'app-header',
-    standalone: true,
-    imports: [CommonModule, RouterLink, MatButtonModule],
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+  selector: 'app-header',
+  standalone: true,
+  imports: [CommonModule, RouterLink, MatButtonModule],
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-    user: IUser = {
-        username: 'Admin',
-        role: Role.ADMIN
-    }
+  user: IUser | undefined = undefined;
+
+  userSub = new Subscription();
+
+  constructor(private userService: UserService) {
+  }
+
+  ngOnInit(): void {
+    this.userSub = this.userService.user.subscribe(user => this.user = user);
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+  }
+
+  logout(): void {
+    this.userService.logout();
+  }
 }
