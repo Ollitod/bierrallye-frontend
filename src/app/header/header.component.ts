@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   user: IUser | undefined = undefined;
 
-  userSub = new Subscription();
+  userSub: Subscription | undefined;
 
   constructor(private userService: UserService) {
   }
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userSub.unsubscribe();
+    this.userSub?.unsubscribe();
   }
 
   logout(): void {

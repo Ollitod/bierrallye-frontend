@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
@@ -11,7 +11,7 @@ import {IAuth} from '../shared/model/auth.model';
 import {TokenService} from '../shared/service/token.service';
 import {UserService} from '../shared/service/user.service';
 import {Role} from '../shared/model/role';
-import {switchMap} from 'rxjs';
+import {Subscription, switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +20,14 @@ import {switchMap} from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
 
   loginForm = new FormGroup({
     username: new FormControl('', {validators: [Validators.required]}),
     password: new FormControl('', {validators: [Validators.required]})
   });
+
+  sub: Subscription | undefined;
 
   constructor(
     private authService: AuthService,
@@ -36,8 +38,12 @@ export class LoginComponent {
   ) {
   }
 
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  }
+
   authenticate(): void {
-    this.authService.authenticate(this.loginForm.getRawValue() as IAuth).pipe(
+    this.sub = this.authService.authenticate(this.loginForm.getRawValue() as IAuth).pipe(
       switchMap(response => {
         this.tokenService.storeToken(response.token);
         this.userService.loginUser();
