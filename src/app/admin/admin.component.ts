@@ -14,11 +14,12 @@ import {ITeam} from '../shared/model/team.model';
 import {TeamService} from '../shared/service/team.service';
 import {ToastrService} from 'ngx-toastr';
 import {RegistrationService} from '../shared/service/registration.service';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, DynamicTableModule, MatButtonModule, MatIconModule, FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, ReactiveFormsModule, _MatCheckboxRequiredValidatorModule],
+  imports: [CommonModule, DynamicTableModule, MatButtonModule, MatIconModule, FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, ReactiveFormsModule, _MatCheckboxRequiredValidatorModule, MatCardModule],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
