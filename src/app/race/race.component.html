@@ -1,0 +1,50 @@
+<div *ngIf="team" class="race-container">
+  <h1>
+    {{team.startblock}}
+  </h1>
+
+  <div class="player-container">
+    <div class="player-info">
+      {{team.teamFirstMember}}
+    </div>
+    <div class="player-info">
+      {{team.teamSecondMember}}
+    </div>
+  </div>
+
+  <div class="checkin">
+    <div class="race-info">
+      <button *ngIf="!team.teamStartTime"
+              class="trigger-scan"
+              color="green"
+              mat-raised-button
+              (click)="openScannerCheckin()">START
+      </button>
+      <div *ngIf="scannerOpenCheckin">
+        <zxing-scanner (scanSuccess)="checkIn($event)"/>
+      </div>
+      <div class="checkin-info green" *ngIf="team.teamStartTime">
+        <h1>Startzeit</h1>
+        <h1>{{team.teamStartTime}} Uhr</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout">
+    <div class="race-info">
+      <button *ngIf="!team.teamEndTime"
+              class="trigger-scan"
+              color="red"
+              mat-raised-button
+              (click)="openScannerCheckout()">ZIEL
+      </button>
+      <div *ngIf="scannerOpenCheckout">
+        <zxing-scanner (scanSuccess)="checkOut($event)"/>
+      </div>
+    </div>
+    <div class="checkout-info red" *ngIf="team.teamEndTime">
+      <h1>Zielzeit</h1>
+      <h1>{{team.teamEndTime}} Uhr</h1>
+    </div>
+  </div>
+</div>

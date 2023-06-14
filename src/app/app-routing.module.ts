@@ -6,6 +6,7 @@ import {ContentComponent} from './content/content.component';
 import {AdminComponent} from './admin/admin.component';
 import {authGuard} from './shared/guards/auth.guard';
 import {LoginComponent} from './login/login.component';
+import {RaceComponent} from './race/race.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'race',
+    component: RaceComponent,
+    canActivate: [authGuard]
   }
 ];
 

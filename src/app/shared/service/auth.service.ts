@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  login(auth: IAuth): Observable<IAuthResponse> {
+  authenticate(auth: IAuth): Observable<IAuthResponse> {
     return this.http.post<IAuthResponse>('https://bierrallye.meinhard.at/authenticate', auth);
   }
 }

@@ -1,0 +1,79 @@
+@import "src/styles/colors";
+
+.race-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background-color: $bierrallye-lightbrown;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.player-container {
+  //width: 100%;
+  width: 325px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+}
+
+.player-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 15px;
+  width: 125px;
+  background-color: $bierrallye-gray;
+}
+
+.trigger-scan {
+  width: 325px;
+}
+
+.checkin-info {
+  width: 325px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.checkout-info {
+  width: 325px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.green {
+  color: white;
+  background-color: #007a53;
+}
+
+.red {
+  color: white;
+  background-color: #e30413;
+}
+
+.mat-mdc-raised-button.mat-green {
+  color: white;
+  background-color: #007a53;
+}
+
+.mat-mdc-raised-button.mat-red {
+  color: white;
+  background-color: #e30413;
+}

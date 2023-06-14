@@ -8,7 +8,7 @@
       <mat-label>Passwort</mat-label>
       <input type="password" formControlName="password" id="password" matInput>
     </mat-form-field>
-    <button (click)="login()"
+    <button (click)="authenticate()"
             [disabled]="!loginForm.valid"
             color="primary"
             mat-raised-button
