@@ -7,11 +7,15 @@ import {Subscription, switchMap} from 'rxjs';
 import {UserService} from '../shared/service/user.service';
 import {IUser} from '../shared/model/user.model';
 import {TeamService} from '../shared/service/team.service';
+import {ZXingScannerModule} from '@zxing/ngx-scanner';
+import {CheckInService} from '../shared/service/check-in.service';
+import {CheckOutService} from '../shared/service/check-out.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-race',
   standalone: true,
-  imports: [CommonModule, WebcamModule, MatButtonModule],
+  imports: [CommonModule, WebcamModule, MatButtonModule, ZXingScannerModule],
   templateUrl: './race.component.html',
   styleUrls: ['./race.component.scss']
 })
@@ -27,7 +31,10 @@ export class RaceComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private checkInService: CheckInService,
+    private checkOutService: CheckOutService,
+    private toastr: ToastrService
   ) {
   }
 
@@ -60,5 +67,32 @@ export class RaceComponent implements OnInit, OnDestroy {
       result.facingMode = {ideal: this.facingMode};
     }
     return result;
+  }
+
+  checkIn(url: string) {
+    this.scannerOpenCheckin = false;
+    this.checkInService.checkIn(url).subscribe(
+      team => {
+        this.team = team;
+        this.toastr.success('Lauf! Es geht um Leben und Tod', 'Eingecheckt')
+      },
+      error => {
+        this.toastr.error(error, 'Fehler');
+      }
+    );
+  }
+
+  checkOut(url: string) {
+    this.scannerOpenCheckout = false;
+    this.checkOutService.checkOut(url).subscribe(
+      team => {
+        this.team = team;
+        this.toastr.success('Glückwunsch! Ihr seid angekommen', 'Ausgecheckt')
+      },
+      error => {
+        console.log(error);
+        this.toastr.error(error, 'Fehler');
+      }
+    );
   }
 }
