@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {WebcamModule} from 'ngx-webcam';
 import {MatButtonModule} from '@angular/material/button';
 import {ITeam} from '../shared/model/team.model';
 import {Subscription, switchMap} from 'rxjs';
@@ -15,7 +14,7 @@ import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-race',
   standalone: true,
-  imports: [CommonModule, WebcamModule, MatButtonModule, ZXingScannerModule],
+  imports: [CommonModule, MatButtonModule, ZXingScannerModule],
   templateUrl: './race.component.html',
   styleUrls: ['./race.component.scss']
 })
@@ -57,16 +56,6 @@ export class RaceComponent implements OnInit, OnDestroy {
 
   openScannerCheckout(): void {
     this.scannerOpenCheckout = !this.scannerOpenCheckout;
-  }
-
-  facingMode: string = 'environment'; // Set rear camera
-
-  public get videoOptions(): MediaTrackConstraints {
-    const result: MediaTrackConstraints = {};
-    if (this.facingMode && this.facingMode !== '') {
-      result.facingMode = {ideal: this.facingMode};
-    }
-    return result;
   }
 
   checkIn(url: string) {
