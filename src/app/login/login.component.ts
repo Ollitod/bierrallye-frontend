@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 import {IAuth} from '../shared/model/auth.model';
 import {TokenService} from '../shared/service/token.service';
 import {UserService} from '../shared/service/user.service';
+import {Role} from '../shared/model/role';
+import {switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -35,16 +37,32 @@ export class LoginComponent {
   }
 
   authenticate(): void {
-    this.authService.authenticate(this.loginForm.getRawValue() as IAuth).subscribe(
-      response => {
+    this.authService.authenticate(this.loginForm.getRawValue() as IAuth).pipe(
+      switchMap(response => {
         this.tokenService.storeToken(response.token);
-        this.router.navigate(['/admin']);
-        this.toastr.success('Login erfolgreich', 'Erfolgreich');
         this.userService.loginUser();
+        return this.userService.user;
+      })).subscribe(user => {
+        if (user?.role) {
+          const routeByRole = this.getRouteByRole(user?.role);
+          console.log(routeByRole);
+          this.router.navigate([routeByRole]);
+          this.toastr.success('Login erfolgreich', 'Erfolgreich');
+        }
       },
       error => {
         this.toastr.error('Username/Passwort falsch', 'Fehler');
-      }
-    );
+      });
+  }
+
+  private getRouteByRole(role: Role): string {
+    if (role === Role.ADMIN) {
+      return '/admin';
+    }
+    if (role === Role.USER) {
+      return '/race';
+    }
+
+    return '/';
   }
 }
