@@ -27,7 +27,6 @@
     "angular-cli-ghpages": "^1.0.6",
     "ngx-gepardec-mat": "^1.0.2",
     "ngx-toastr": "^17.0.2",
-    "ngx-webcam": "^0.4.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
