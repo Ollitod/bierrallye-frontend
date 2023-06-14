@@ -32,7 +32,8 @@ const routes: Routes = [
   },
   {
     path: 'race',
-    component: RaceComponent
+    component: RaceComponent,
+    canActivate: [authGuard]
   }
 ];
 
