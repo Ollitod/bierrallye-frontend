@@ -55,8 +55,7 @@
 
   <gpx-dynamic-table [columnSpecs]="columnSpecs"
                      [columnsExcludedFromSort]="['drink1', 'drink2', 'startblock', 'apply']"
-                     [data]="registrations"
-                     [rowColor]="'#FDF1CD'">
+                     [data]="registrations">
 
     <ng-template [gpxCustomColumn]="'active'" let-registration>
       <ng-container *ngIf="registration.active">
