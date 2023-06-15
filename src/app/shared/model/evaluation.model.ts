@@ -5,7 +5,7 @@ export interface IEvaluation {
   stationEvaluation: IStationEvaluation[];
   startTime: string;
   endTime: string;
-  penalty: number;
-  duration: number;
-  finalTime: number;
+  penalty: string;
+  duration: string;
+  finalTime: string;
 }
