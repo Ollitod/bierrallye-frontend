@@ -62,13 +62,15 @@ export class LoginComponent implements OnDestroy {
   }
 
   private getRouteByRole(role: Role): string {
-    if (role === Role.ADMIN) {
-      return '/admin';
+    switch (role) {
+      case Role.ADMIN:
+        return '/admin';
+      case Role.USER:
+        return '/race';
+      case Role.EMPLOYEE:
+        return '/penalty'
+      default:
+        return '/';
     }
-    if (role === Role.USER) {
-      return '/race';
-    }
-
-    return '/';
   }
 }

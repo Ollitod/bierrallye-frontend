@@ -1,0 +1,42 @@
+@import "src/styles/colors";
+
+.station-container {
+  background-color: $bierrallye-lightbrown;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+
+.mat-mdc-card {
+  background-color: $bierrallye-lightbrown;
+}
+
+.form-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+
+  button {
+    max-width: 250px;
+    min-width: 150px;
+    flex-grow: 1;
+  }
+}
+
+@media only screen and (max-width: 379px) {
+  .form-actions {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+      max-width: unset;
+      min-width: unset;
+    }
+  }
+}
