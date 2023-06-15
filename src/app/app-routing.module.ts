@@ -8,6 +8,7 @@ import {authGuard} from './shared/guards/auth.guard';
 import {LoginComponent} from './login/login.component';
 import {RaceComponent} from './race/race.component';
 import {EvaluationComponent} from './shared/service/evaluation/evaluation.component';
+import {PenaltyComponent} from './penalty/penalty.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'evaluation',
     component: EvaluationComponent
+  },
+  {
+    path: 'penalty',
+    component: PenaltyComponent
   }
 ];
 

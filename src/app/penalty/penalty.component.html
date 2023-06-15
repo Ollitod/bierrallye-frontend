@@ -1,0 +1,60 @@
+<div *ngIf="!showForm" class="station-container">
+  <mat-action-list>
+    <mat-list-item (click)="initPenaltyForm(station.stationId)" *ngFor="let station of stations">
+      {{station.stationName}}
+    </mat-list-item>
+  </mat-action-list>
+</div>
+
+<mat-card *ngIf="showForm">
+  <mat-card-header>
+    <mat-card-title>Strafminuten erfassen</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="pt-15">
+    <form #formDirective="ngForm" [formGroup]="penaltyForm">
+      <div class="form-container">
+        <mat-form-field>
+          <mat-label>Station</mat-label>
+          <mat-select formControlName="stationId" id="stationId">
+            <mat-option *ngFor="let station of stations"
+                        [value]="station.stationId">
+              {{station.stationName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Team</mat-label>
+          <mat-select formControlName="teamId" id="teamId">
+            <mat-option *ngFor="let team of teams"
+                        [value]="team.teamId">
+              {{team.teamFirstMember}} & {{team.teamSecondMember}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Strafminuten</mat-label>
+          <input formControlName="minutes" id="minutes" matInput type="number">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Kommentar</mat-label>
+          <textarea formControlName="comment" id="comment" matInput rows="5"></textarea>
+        </mat-form-field>
+
+        <div class="form-actions">
+          <button (click)="back()"
+                  color="accent"
+                  mat-raised-button>
+            Zurück
+          </button>
+          <button (click)="createPenalty()"
+                  [disabled]="!penaltyForm.valid"
+                  color="primary"
+                  mat-raised-button
+                  type="submit">
+            Strafe erfassen
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
