@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ContentComponent} from './content/content.component';
-import {authGuard} from './shared/guards/auth.guard';
+import {RegistrationComponent} from './registration/registration.component';
+import {authGuard} from './shared/guards/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,19 +11,19 @@ const routes: Routes = [
   },
   {
     path: 'registration',
-    component: ContentComponent
+    component: RegistrationComponent
   },
   {
     path: 'verify',
-    loadComponent: () => import('./verification/verification.component').then(c => c.VerificationComponent)
+    loadComponent: () => import('./registration/verification/verification.component').then(c => c.VerificationComponent)
   },
   {
     path: 'impressum',
     loadComponent: () => import('./impressum/impressum.component').then(c => c.ImpressumComponent)
   },
   {
-    path: 'admin',
-    loadComponent: () => import('./admin/admin.component').then(c => c.AdminComponent),
+    path: 'onboarding',
+    loadComponent: () => import('./onboarding/onboarding.component').then(c => c.OnboardingComponent),
     canActivate: [authGuard]
   },
   {

@@ -1,0 +1,41 @@
+@import "colors";
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-gap: 15px;
+  box-sizing: border-box;
+  padding-top: 15px;
+  padding-right: 15px;
+  overflow: clip;
+}
+
+.spots-container {
+  grid-column: 1 / 2;
+  box-sizing: border-box;
+}
+
+.form-container {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  background-color: $bierrallye-lightbrown;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.form-container > * {
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 1170px) {
+  .grid-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 15px;
+    box-sizing: border-box;
+    padding-right: unset;
+  }
+}

@@ -1,0 +1,20 @@
+@import "colors";
+
+.flex-row {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $bierrallye-black;
+  color: $bierrallye-lightbrown;
+  padding: 0 15px 0;
+  box-sizing: border-box;
+
+  a {
+    text-decoration: none;
+    color: $bierrallye-lightbrown;
+  }
+}
+

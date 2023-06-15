@@ -64,7 +64,7 @@ export class LoginComponent implements OnDestroy {
   private getRouteByRole(role: Role): string {
     switch (role) {
       case Role.ADMIN:
-        return '/admin';
+        return '/onboarding';
       case Role.USER:
         return '/race';
       case Role.EMPLOYEE:
