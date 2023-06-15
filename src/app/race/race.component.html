@@ -27,29 +27,25 @@
   </div>
 
   <div *ngIf="!(scannerOpenCheckin || scannerOpenCheckout)" class="card">
-    <div>
-      <button (click)="openScannerCheckin()"
-              *ngIf="!team.teamStartTime"
-              color="green"
-              mat-raised-button>
-        START
-      </button>
-      <div *ngIf="team.teamStartTime" class="scan-info green">
-        <h1>Startzeit</h1>
-        <h1>{{team.teamStartTime}} Uhr</h1>
-      </div>
+    <button (click)="openScannerCheckin()"
+            *ngIf="!team.teamStartTime"
+            color="green"
+            mat-raised-button>
+      START
+    </button>
+    <div *ngIf="team.teamStartTime" class="scan-info green">
+      <h1>Startzeit</h1>
+      <h1>{{team.teamStartTime}} Uhr</h1>
     </div>
   </div>
 
   <div *ngIf="!(scannerOpenCheckin || scannerOpenCheckout)" class="card">
-    <div>
-      <button (click)="openScannerCheckout()"
-              *ngIf="!team.teamEndTime"
-              color="red"
-              mat-raised-button>
-        ZIEL
-      </button>
-    </div>
+    <button (click)="openScannerCheckout()"
+            *ngIf="!team.teamEndTime"
+            color="red"
+            mat-raised-button>
+      ZIEL
+    </button>
     <div *ngIf="team.teamEndTime" class="scan-info red">
       <h1>Zielzeit</h1>
       <h1>{{team.teamEndTime}} Uhr</h1>
