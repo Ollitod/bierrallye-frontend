@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'evaluation',
-    loadComponent: () => import('./shared/service/evaluation/evaluation.component').then(c => c.EvaluationComponent)
+    loadComponent: () => import('./evaluation/evaluation.component').then(c => c.EvaluationComponent)
   },
   {
     path: 'penalty',

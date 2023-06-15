@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {EvaluationService} from '../evaluation.service';
-import {IEvaluation} from '../../model/evaluation.model';
+import {EvaluationService} from '../shared/service/evaluation.service';
+import {IEvaluation} from '../shared/model/evaluation.model';
 import {ColumnSpec, ExpandableDynamicTableModule} from 'ngx-gepardec-mat';
-import {IStationEvaluation} from '../../model/station-evaluation.model';
+import {IStationEvaluation} from '../shared/model/station-evaluation.model';
 import {MatCardModule} from '@angular/material/card';
 
 @Component({
