@@ -1,49 +1,47 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {VerificationComponent} from './verification/verification.component';
-import {ImpressumComponent} from './impressum/impressum.component';
 import {ContentComponent} from './content/content.component';
-import {AdminComponent} from './admin/admin.component';
 import {authGuard} from './shared/guards/auth.guard';
-import {LoginComponent} from './login/login.component';
-import {RaceComponent} from './race/race.component';
-import {EvaluationComponent} from './shared/service/evaluation/evaluation.component';
-import {PenaltyComponent} from './penalty/penalty.component';
 
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'registration'
+  },
+  {
+    path: 'registration',
     component: ContentComponent
   },
   {
     path: 'verify',
-    component: VerificationComponent,
+    loadComponent: () => import('./verification/verification.component').then(c => c.VerificationComponent)
   },
   {
     path: 'impressum',
-    component: ImpressumComponent
+    loadComponent: () => import('./impressum/impressum.component').then(c => c.ImpressumComponent)
   },
   {
     path: 'admin',
-    component: AdminComponent,
+    loadComponent: () => import('./admin/admin.component').then(c => c.AdminComponent),
     canActivate: [authGuard]
   },
   {
     path: 'login',
-    component: LoginComponent
+    loadComponent: () => import('./login/login.component').then(c => c.LoginComponent),
   },
   {
     path: 'race',
-    component: RaceComponent,
+    loadComponent: () => import('./race/race.component').then(c => c.RaceComponent),
     canActivate: [authGuard]
   },
   {
     path: 'evaluation',
-    component: EvaluationComponent
+    loadComponent: () => import('./shared/service/evaluation/evaluation.component').then(c => c.EvaluationComponent)
   },
   {
     path: 'penalty',
-    component: PenaltyComponent
+    loadComponent: () => import('./penalty/penalty.component').then(c => c.PenaltyComponent)
   }
 ];
 
