@@ -11,9 +11,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {ITeam} from '../shared/model/team.model';
-import {TeamService} from '../shared/service/team.service';
+import {TeamService} from '../shared/service/team/team.service';
 import {ToastrService} from 'ngx-toastr';
-import {RegistrationService} from '../shared/service/registration.service';
+import {RegistrationService} from '../shared/service/registration/registration.service';
 import {MatCardModule} from '@angular/material/card';
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {PenaltyService} from '../shared/service/penalty.service';
+import {PenaltyService} from '../shared/service/penalty/penalty.service';
 import {ToastrService} from 'ngx-toastr';
 import {IStation} from '../shared/model/station.model';
 import {ITeam} from '../shared/model/team.model';

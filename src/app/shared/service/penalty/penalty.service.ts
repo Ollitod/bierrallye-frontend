@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {IStation} from '../model/station.model';
-import {ITeam} from '../model/team.model';
-import {IPenalty} from '../model/penalty.model';
+import {IStation} from '../../model/station.model';
+import {ITeam} from '../../model/team.model';
+import {IPenalty} from '../../model/penalty.model';
 
 @Injectable({
   providedIn: 'root'

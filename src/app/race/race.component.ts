@@ -3,12 +3,12 @@ import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {ITeam} from '../shared/model/team.model';
 import {Subscription, switchMap} from 'rxjs';
-import {UserService} from '../shared/service/user.service';
+import {UserService} from '../shared/service/user/user.service';
 import {IUser} from '../shared/model/user.model';
-import {TeamService} from '../shared/service/team.service';
+import {TeamService} from '../shared/service/team/team.service';
 import {ZXingScannerModule} from '@zxing/ngx-scanner';
-import {CheckInService} from '../shared/service/check-in.service';
-import {CheckOutService} from '../shared/service/check-out.service';
+import {CheckInService} from '../shared/service/check-in/check-in.service';
+import {CheckOutService} from '../shared/service/check-out/check-out.service';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({

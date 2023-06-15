@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {VerificationService} from '../shared/service/verification.service';
+import {VerificationService} from '../shared/service/verification/verification.service';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute} from '@angular/router';
 import {switchMap} from 'rxjs';
