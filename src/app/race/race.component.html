@@ -12,37 +12,45 @@
     </div>
   </div>
 
-  <div class="checkin">
-    <div class="race-info">
-      <button *ngIf="!team.teamStartTime"
-              class="trigger-scan"
+  <div *ngIf="scannerOpenCheckin || scannerOpenCheckout" class="scanning-container">
+    <div *ngIf="scannerOpenCheckin">
+      <zxing-scanner (scanSuccess)="checkIn($event)" previewFitMode="cover"/>
+    </div>
+    <div *ngIf="scannerOpenCheckout">
+      <zxing-scanner (scanSuccess)="checkOut($event)"/>
+    </div>
+    <button (click)="cancelScanning()"
+            color="accent"
+            mat-raised-button>
+      Scan abbrechen
+    </button>
+  </div>
+
+  <div *ngIf="!(scannerOpenCheckin || scannerOpenCheckout)" class="card">
+    <div>
+      <button (click)="openScannerCheckin()"
+              *ngIf="!team.teamStartTime"
               color="green"
-              mat-raised-button
-              (click)="openScannerCheckin()">START
+              mat-raised-button>
+        START
       </button>
-      <div *ngIf="scannerOpenCheckin">
-        <zxing-scanner (scanSuccess)="checkIn($event)"/>
-      </div>
-      <div class="checkin-info green" *ngIf="team.teamStartTime">
+      <div *ngIf="team.teamStartTime" class="scan-info green">
         <h1>Startzeit</h1>
         <h1>{{team.teamStartTime}} Uhr</h1>
       </div>
     </div>
   </div>
 
-  <div class="checkout">
-    <div class="race-info">
-      <button *ngIf="!team.teamEndTime"
-              class="trigger-scan"
+  <div *ngIf="!(scannerOpenCheckin || scannerOpenCheckout)" class="card">
+    <div>
+      <button (click)="openScannerCheckout()"
+              *ngIf="!team.teamEndTime"
               color="red"
-              mat-raised-button
-              (click)="openScannerCheckout()">ZIEL
+              mat-raised-button>
+        ZIEL
       </button>
-      <div *ngIf="scannerOpenCheckout">
-        <zxing-scanner (scanSuccess)="checkOut($event)"/>
-      </div>
     </div>
-    <div class="checkout-info red" *ngIf="team.teamEndTime">
+    <div *ngIf="team.teamEndTime" class="scan-info red">
       <h1>Zielzeit</h1>
       <h1>{{team.teamEndTime}} Uhr</h1>
     </div>

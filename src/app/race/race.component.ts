@@ -51,11 +51,11 @@ export class RaceComponent implements OnInit, OnDestroy {
   }
 
   openScannerCheckin(): void {
-    this.scannerOpenCheckin = !this.scannerOpenCheckin;
+    this.scannerOpenCheckin = true;
   }
 
   openScannerCheckout(): void {
-    this.scannerOpenCheckout = !this.scannerOpenCheckout;
+    this.scannerOpenCheckout = true;
   }
 
   checkIn(url: string) {
@@ -83,5 +83,10 @@ export class RaceComponent implements OnInit, OnDestroy {
         this.toastr.error(error, 'Fehler');
       }
     );
+  }
+
+  cancelScanning(): void {
+    this.scannerOpenCheckin = false;
+    this.scannerOpenCheckout = false;
   }
 }

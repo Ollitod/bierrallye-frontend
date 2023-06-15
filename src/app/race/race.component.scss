@@ -13,7 +13,6 @@
 }
 
 .player-container {
-  //width: 100%;
   width: 325px;
   display: flex;
   flex-direction: row;
@@ -30,13 +29,43 @@
   padding: 15px;
   width: 125px;
   background-color: $bierrallye-gray;
+  border-radius: 5px;
 }
 
-.trigger-scan {
+.scanning-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 415px;
   width: 325px;
 }
 
-.checkin-info {
+.card {
+  width: 325px;
+  height: 200px;
+
+  div, button, span {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+::ng-deep {
+  zxing-scanner {
+    /* Root component needs to have height: 100% */
+    height: 100%;
+    /* Optional : you probably want full-width as well for landscape orientation or tablets */
+    width: 100%;
+
+  }
+
+  video {
+    /* !important because component already sets height property */
+    height: 365px !important;
+  }
+}
+
+.scan-info {
   width: 325px;
   height: 150px;
   display: flex;
@@ -45,17 +74,7 @@
   align-items: center;
   flex-wrap: wrap;
   text-align: center;
-}
-
-.checkout-info {
-  width: 325px;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  text-align: center;
+  border-radius: 5px;
 }
 
 .green {
