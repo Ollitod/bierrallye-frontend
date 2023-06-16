@@ -24,10 +24,19 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Team</mat-label>
-          <mat-select formControlName="teamId" id="teamId">
+          <mat-select (valueChange)="teamSelectionChange($event)" formControlName="teamId" id="teamId">
             <mat-option *ngFor="let team of teams"
                         [value]="team.teamId">
               {{team.teamFirstMember}} & {{team.teamSecondMember}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Box-ID</mat-label>
+          <mat-select (valueChange)="boxIdSelectionChange($event)" formControlName="boxId" id="boxId">
+            <mat-option *ngFor="let boxId of extractedBoxIds"
+                        [value]="boxId">
+              {{boxId}}
             </mat-option>
           </mat-select>
         </mat-form-field>

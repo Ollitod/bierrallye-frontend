@@ -24,6 +24,7 @@ export class PenaltyService {
   }
 
   createPenalty(penalty: IPenalty): Observable<string> {
+    console.log(penalty);
     return this.http.post('https://bierrallye.meinhard.at/penalty', penalty,
       {
         responseType: 'text'

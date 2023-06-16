@@ -26,9 +26,12 @@ export class PenaltyComponent implements OnInit {
   stations: IStation[] = [];
   teams: ITeam[] = [];
 
+  extractedBoxIds: number[] = [];
+
   penaltyForm = new FormGroup({
     stationId: new FormControl<number | null>({value: null, disabled: true}, {nonNullable: false}),
     teamId: new FormControl<number | null>(null, {validators: [Validators.required], nonNullable: false}),
+    boxId: new FormControl<number | null>(null, {nonNullable: false}),
     minutes: new FormControl<number | null>(null, {validators: [Validators.required], nonNullable: false}),
     comment: new FormControl(''),
   });
@@ -47,8 +50,8 @@ export class PenaltyComponent implements OnInit {
   ngOnInit(): void {
     this.penaltyService.getStations().subscribe(stations => this.stations = stations);
     this.penaltyService.getTeams().subscribe(teams => {
-      this.teams = teams;
-      console.log(teams)
+      this.teams = teams.sort((a, b) => a.teamFirstMember.localeCompare(b.teamFirstMember));
+      this.extractedBoxIds = teams.map(team => team.boxId).sort((a, b) => a - b);
     });
     // validation is not performed on disabled controls, so required validator has to be set explicitly on the form itself
     this.penaltyForm.setValidators((form) => Validators.required(this.penaltyForm.controls.stationId));
@@ -58,6 +61,23 @@ export class PenaltyComponent implements OnInit {
     this.selectedStationId = stationId;
     this.showForm = true;
     this.penaltyForm.controls.stationId.patchValue(stationId);
+  }
+
+  teamSelectionChange(teamId: number) {
+    console.log(teamId, this.getBoxIdByTeamId(teamId))
+    this.penaltyForm.controls.boxId.patchValue(this.getBoxIdByTeamId(teamId) || null);
+  }
+
+  boxIdSelectionChange(boxId: number) {
+    this.penaltyForm.controls.teamId.patchValue(this.getTeamIdByBoxId(boxId) || null);
+  }
+
+  private getBoxIdByTeamId(teamId: number): number | undefined {
+    return this.teams.find(team => team.teamId === teamId)?.boxId;
+  }
+
+  private getTeamIdByBoxId(boxId: number): number | undefined {
+    return this.teams.find(team => team.boxId === boxId)?.teamId;
   }
 
   createPenalty() {
