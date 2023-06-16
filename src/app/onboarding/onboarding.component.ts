@@ -131,7 +131,7 @@ export class OnboardingComponent implements OnInit {
     const email = this.teamForm.controls.email.value;
     const uuid = this.teamForm.controls.uuid.value;
 
-    this.encodedURL = window.location.origin + `/registration/?username=${email}&uuid=${uuid}`;
+    this.encodedURL = window.location.origin + `/login/?username=${email}&uuid=${uuid}`;
 
     // Open new window
     window.open(
