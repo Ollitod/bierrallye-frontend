@@ -343,6 +343,9 @@ nuclear facility.
 @zxing/ngx-scanner
 MIT
 
+kjua-svg
+MIT
+
 moment
 MIT
 Copyright (c) JS Foundation and other contributors
@@ -370,6 +373,9 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 ngx-gepardec-mat
+
+ngx-kjua
+MIT
 
 ngx-toastr
 MIT
