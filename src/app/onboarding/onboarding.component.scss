@@ -36,3 +36,15 @@
 .red {
   color: #e30413;
 }
+
+.button-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 15px;
+  box-sizing: border-box;
+
+  button {
+    width: 100%;
+  }
+}

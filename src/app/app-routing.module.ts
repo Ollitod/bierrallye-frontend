@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'penalty',
     loadComponent: () => import('./penalty/penalty.component').then(c => c.PenaltyComponent)
+  },
+  {
+    path: 'qr-login',
+    loadComponent: () => import('./qr-login/qr-login.component').then(c => c.QrLoginComponent)
   }
 ];
 

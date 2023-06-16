@@ -73,6 +73,8 @@ export class OnboardingComponent implements OnInit {
     boxId: new FormControl<number | null>(null, {validators: [Validators.required]}),
   });
 
+  encodedURL: string | undefined;
+
   constructor(
     private registrationService: RegistrationService,
     private teamService: TeamService,
@@ -84,6 +86,18 @@ export class OnboardingComponent implements OnInit {
     this.registrationService.getRegistrations().subscribe(registrations => {
       this.registrations = registrations;
     });
+
+    const channel = new BroadcastChannel('qr-login');
+    channel.onmessage = (event) => {
+      if (event.data === 'initialized') {
+        this.sendMessageToQrLogin();
+      }
+    };
+  }
+
+  sendMessageToQrLogin() {
+    const channel = new BroadcastChannel('qr-login');
+    channel.postMessage({encodedURL: this.encodedURL});
   }
 
   fillTeam(registration: IRegistration): void {
@@ -110,6 +124,19 @@ export class OnboardingComponent implements OnInit {
           this.toastr.error('Beim anlegen des Teams ist ein unbekannter Fehler aufgetreten', 'Fehler');
         }
       }
+    );
+  }
+
+  generateLoginQrCode() {
+    const email = this.teamForm.controls.email.value;
+    const uuid = this.teamForm.controls.uuid.value;
+
+    this.encodedURL = window.location.origin + `/registration/?username=${email}&uuid=${uuid}`;
+
+    // Open new window
+    window.open(
+      window.location.origin + '/qr-login',
+      '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'
     );
   }
 }

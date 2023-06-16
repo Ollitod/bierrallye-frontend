@@ -40,13 +40,20 @@
               </mat-form-field>
             </div>
 
-            <button (click)="createTeam()"
-                    [disabled]="!teamForm.valid"
-                    color="primary"
-                    mat-raised-button
-                    type="submit">
-              Team erstellen
-            </button>
+            <div class="button-container">
+              <button (click)="generateLoginQrCode()"
+                      color="accent"
+                      mat-raised-button>
+                QR-Code generieren
+              </button>
+              <button (click)="createTeam()"
+                      [disabled]="!teamForm.valid"
+                      color="primary"
+                      mat-raised-button
+                      type="submit">
+                Team erstellen
+              </button>
+            </div>
           </div>
         </form>
       </mat-card-content>

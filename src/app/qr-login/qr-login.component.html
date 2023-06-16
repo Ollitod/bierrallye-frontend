@@ -1,0 +1,5 @@
+<div *ngIf="encodedURL && image" class="qr-code-container">
+  <ngx-kjua [crisp]="true" [image]="image" [mode]="'image'" [size]="450" [text]="encodedURL" [mSize]="30"/>
+</div>
+
+<img #imgBuffer id="img-buffer" src="/assets/logos/beer-icon-without-background.png"/>

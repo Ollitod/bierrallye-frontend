@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
@@ -6,7 +6,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {ToastrService} from 'ngx-toastr';
 import {AuthService} from '../shared/service/auth/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {IAuth} from '../shared/model/auth.model';
 import {TokenService} from '../shared/service/token/token.service';
 import {UserService} from '../shared/service/user/user.service';
@@ -20,7 +20,7 @@ import {Subscription, switchMap} from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm = new FormGroup({
     username: new FormControl('', {validators: [Validators.required]}),
@@ -34,8 +34,18 @@ export class LoginComponent implements OnDestroy {
     private toastr: ToastrService,
     private router: Router,
     private tokenService: TokenService,
-    private userService: UserService
+    private userService: UserService,
+    private route: ActivatedRoute
   ) {
+  }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(
+      params => {
+        this.loginForm.controls.username.patchValue(params['username']);
+        this.loginForm.controls.password.patchValue(params['uuid']);
+      }
+    );
   }
 
   ngOnDestroy(): void {
