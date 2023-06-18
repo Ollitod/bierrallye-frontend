@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {IStation} from '../../../model/station.model';
 import {ITeam} from '../../../model/team.model';
 import {IPenalty} from '../../../model/penalty.model';
+import {BASE_API_URL} from '../configuration';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +17,16 @@ export class PenaltyService {
   }
 
   getStations(): Observable<IStation[]> {
-    return this.http.get<IStation[]>('https://bierrallye.meinhard.at/penalty/stations');
+    return this.http.get<IStation[]>(BASE_API_URL + 'penalty/stations');
   }
 
   getTeams(): Observable<ITeam[]> {
-    return this.http.get<ITeam[]>('https://bierrallye.meinhard.at/penalty/teams');
+    return this.http.get<ITeam[]>(BASE_API_URL + 'penalty/teams');
   }
 
   createPenalty(penalty: IPenalty): Observable<string> {
     console.log(penalty);
-    return this.http.post('https://bierrallye.meinhard.at/penalty', penalty,
+    return this.http.post(BASE_API_URL + 'penalty', penalty,
       {
         responseType: 'text'
       }

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IStartblock} from '../../../model/startblock.model';
 import {IStartblockWrapper} from '../../../model/startblock-wrapper.model';
+import {BASE_API_URL} from '../configuration';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class StartblockService {
   }
 
   getStartblocks(): Observable<IStartblockWrapper> {
-    return this.http.get<IStartblockWrapper>('https://bierrallye.meinhard.at/registration/blocks');
+    return this.http.get<IStartblockWrapper>(BASE_API_URL + 'registration/blocks');
   }
 }
 

@@ -3,13 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {UserService} from '../user/user.service';
 import {ITeam} from '../../../model/team.model';
 import {Observable, throwError} from 'rxjs';
+import {BASE_API_URL} from '../configuration';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckInService {
 
-  private readonly endpoint: string = 'https://bierrallye.meinhard.at/track/checkIn';
+  private readonly endpoint: string = BASE_API_URL + 'track/checkIn';
 
   constructor(
     private http: HttpClient,

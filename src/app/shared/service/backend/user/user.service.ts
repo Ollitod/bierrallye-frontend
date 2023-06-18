@@ -4,6 +4,7 @@ import {IUser} from '../../../model/user.model';
 import {HttpClient} from '@angular/common/http';
 import {TokenService} from '../../frontend/token/token.service';
 import {Router} from '@angular/router';
+import {BASE_API_URL} from '../configuration';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class UserService {
   }
 
   public loginUser(): void {
-    this.http.get<IUser>('https://bierrallye.meinhard.at/user').subscribe(user => this.user.next(user));
+    this.http.get<IUser>(BASE_API_URL + 'user').subscribe(user => this.user.next(user));
   }
 
   public logout(): void {
