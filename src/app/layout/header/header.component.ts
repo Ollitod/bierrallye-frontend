@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {IUser} from '../../shared/model/user.model';
-import {UserService} from '../../shared/service/user/user.service';
+import {UserService} from '../../shared/service/backend/user/user.service';
 import {Subscription} from 'rxjs';
 
 @Component({

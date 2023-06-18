@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {IStartblock} from '../../model/startblock.model';
-import {IStartblockWrapper} from '../../model/startblock-wrapper.model';
+import {IStartblock} from '../../../model/startblock.model';
+import {IStartblockWrapper} from '../../../model/startblock-wrapper.model';
 
 @Injectable({
   providedIn: 'root'

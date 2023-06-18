@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {IDrink} from '../../model/drink.model';
+import {IDrink} from '../../../model/drink.model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 

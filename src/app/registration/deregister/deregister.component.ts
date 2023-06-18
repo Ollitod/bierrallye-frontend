@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {DeregisterService} from '../../shared/service/deregister/deregister.service';
+import {DeregisterService} from '../../shared/service/backend/deregister/deregister.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';

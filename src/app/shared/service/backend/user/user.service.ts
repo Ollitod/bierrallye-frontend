@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {IUser} from '../../model/user.model';
+import {IUser} from '../../../model/user.model';
 import {HttpClient} from '@angular/common/http';
-import {TokenService} from '../token/token.service';
+import {TokenService} from '../../frontend/token/token.service';
 import {Router} from '@angular/router';
 
 @Injectable({

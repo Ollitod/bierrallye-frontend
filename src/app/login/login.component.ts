@@ -5,11 +5,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {ToastrService} from 'ngx-toastr';
-import {AuthService} from '../shared/service/auth/auth.service';
+import {AuthService} from '../shared/service/backend/auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IAuth} from '../shared/model/auth.model';
-import {TokenService} from '../shared/service/token/token.service';
-import {UserService} from '../shared/service/user/user.service';
+import {TokenService} from '../shared/service/frontend/token/token.service';
+import {UserService} from '../shared/service/backend/user/user.service';
 import {Role} from '../shared/model/role';
 import {Subscription, switchMap} from 'rxjs';
 

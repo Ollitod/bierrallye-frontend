@@ -4,8 +4,8 @@ import {HardfactsComponent} from './registration/hardfacts/hardfacts.component';
 import {HeaderComponent} from './layout/header/header.component';
 import {RouterOutlet} from '@angular/router';
 import {GeneralInfoComponent} from './registration/general-info/general-info.component';
-import {TokenService} from './shared/service/token/token.service';
-import {UserService} from './shared/service/user/user.service';
+import {TokenService} from './shared/service/frontend/token/token.service';
+import {UserService} from './shared/service/backend/user/user.service';
 
 @Component({
   selector: 'app-root',

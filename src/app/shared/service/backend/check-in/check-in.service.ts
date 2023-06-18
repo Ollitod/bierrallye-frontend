@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../user/user.service';
+import {ITeam} from '../../../model/team.model';
 import {Observable, throwError} from 'rxjs';
-import {ITeam} from '../../model/team.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CheckOutService {
+export class CheckInService {
 
-  private readonly endpoint: string = 'https://bierrallye.meinhard.at/track/checkOut';
+  private readonly endpoint: string = 'https://bierrallye.meinhard.at/track/checkIn';
 
   constructor(
     private http: HttpClient,
@@ -17,8 +17,7 @@ export class CheckOutService {
   ) {
   }
 
-  checkOut(url: string): Observable<ITeam> {
-    console.log(url);
+  checkIn(url: string): Observable<ITeam> {
     if (url !== this.endpoint) {
       return throwError(() => 'QR-Code nicht gültig!');
     }
