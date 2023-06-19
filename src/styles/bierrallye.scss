@@ -2,6 +2,9 @@
 @import '../../node_modules/@angular/material/theming';
 @import "src/styles/colors";
 
+@include mat.core();
+@include mat.all-component-typographies();
+
 /* For use in src/lib/core/theming/_palette.scss */
 $bierrallye-palette: (
   50 : #e5e5e5,
