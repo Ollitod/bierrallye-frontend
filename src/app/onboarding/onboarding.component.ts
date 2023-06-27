@@ -26,6 +26,11 @@ export class OnboardingComponent implements OnInit {
 
   columnSpecs: ColumnSpec<IRegistration>[] = [
     {
+      displayedColumn: 'hasTeam',
+      header: 'Angelegt',
+      width: '100px'
+    },
+    {
       displayedColumn: 'player1',
       header: 'Spieler 1'
     },
@@ -36,7 +41,7 @@ export class OnboardingComponent implements OnInit {
     {
       displayedColumn: 'active',
       header: 'Aktiv',
-      width: '75px'
+      width: '100px'
     },
     {
       displayedColumn: 'email',

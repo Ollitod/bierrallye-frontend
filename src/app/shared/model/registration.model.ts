@@ -8,4 +8,5 @@ export interface IRegistration {
   uuid?: string;
   dsgvoApproved: boolean;
   active?: boolean;
+  hasTeam?: boolean
 }

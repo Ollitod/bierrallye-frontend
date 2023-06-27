@@ -13,6 +13,15 @@
       </ng-container>
     </ng-template>
 
+    <ng-template [gpxCustomColumn]="'hasTeam'" let-registration>
+      <ng-container *ngIf="registration.hasTeam">
+        <mat-icon class="green">check_circle</mat-icon>
+      </ng-container>
+      <ng-container *ngIf="!registration.hasTeam">
+        <mat-icon class="red">cancel</mat-icon>
+      </ng-container>
+    </ng-template>
+
     <ng-template [gpxCustomColumn]="'drink1'" let-registration>
       {{registration.drink1.name}}
     </ng-template>
