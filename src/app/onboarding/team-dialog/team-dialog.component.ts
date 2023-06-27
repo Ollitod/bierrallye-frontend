@@ -42,7 +42,13 @@ export class TeamDialogComponent implements OnInit {
   ngOnInit(): void {
     this.teamService.get(this.registration.uuid).subscribe(
       team => {
-        this.teamForm.patchValue(team);
+        // since email is not a property of ITeam, it has to be patched with the value from the registration
+        this.teamForm.patchValue(
+          {
+            ...team,
+            email: this.registration.email
+          }
+        );
         this.teamForm.controls.boxId.disable();
         this.disableCreateTeamButton();
       },
