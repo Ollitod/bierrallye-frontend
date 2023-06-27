@@ -87,12 +87,12 @@
   background-color: #e30413;
 }
 
-.mat-mdc-raised-button.mat-green {
+.mat-mdc-raised-button.mat-green:not(:disabled) {
   color: white;
   background-color: #007a53;
 }
 
-.mat-mdc-raised-button.mat-red {
+.mat-mdc-raised-button.mat-red:not(:disabled) {
   color: white;
   background-color: #e30413;
 }

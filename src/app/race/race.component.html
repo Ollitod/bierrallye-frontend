@@ -42,6 +42,7 @@
   <div *ngIf="!(scannerOpenCheckin || scannerOpenCheckout)" class="card">
     <button (click)="openScannerCheckout()"
             *ngIf="!team.teamEndTime"
+            [disabled]="!team.teamStartTime"
             color="red"
             mat-raised-button>
       ZIEL
