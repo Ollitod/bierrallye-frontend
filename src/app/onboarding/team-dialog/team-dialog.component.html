@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>Team anlegen</h1>
+<mat-dialog-content>
+  <form [formGroup]="teamForm">
+    <div class="form-container">
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Spieler 1</mat-label>
+          <input formControlName="teamFirstMember" id="teamFirstMember" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Spieler 2</mat-label>
+          <input formControlName="teamSecondMember" id="teamSecondMember" matInput>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input formControlName="email" id="email" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Startblock</mat-label>
+          <input formControlName="startblock" id="startblock" matInput>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>UUID</mat-label>
+          <input formControlName="uuid" id="uuid" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Box-Nr.</mat-label>
+          <input #boxId formControlName="boxId" id="boxId" matInput>
+        </mat-form-field>
+      </div>
+
+      <div class="button-container">
+        <button (click)="generateLoginQrCode()"
+                color="accent"
+                mat-raised-button>
+          QR-Code generieren
+        </button>
+        <button (click)="createTeam()"
+                [disabled]="!teamForm.valid || createTeamDisabled"
+                color="primary"
+                mat-raised-button
+                type="submit">
+          Team erstellen
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button color="primary"
+          mat-dialog-close
+          mat-raised-button>
+    Schließen
+  </button>
+</mat-dialog-actions>

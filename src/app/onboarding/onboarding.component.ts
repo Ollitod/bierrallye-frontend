@@ -4,28 +4,32 @@ import {IRegistration} from '../shared/model/registration.model';
 import {ColumnSpec, DynamicTableModule} from 'ngx-gepardec-mat';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {_MatCheckboxRequiredValidatorModule, MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import {ITeam} from '../shared/model/team.model';
-import {TeamService} from '../shared/service/backend/team/team.service';
-import {ToastrService} from 'ngx-toastr';
 import {RegistrationService} from '../shared/service/backend/registration/registration.service';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {TeamDialogComponent} from './team-dialog/team-dialog.component';
 
 @Component({
   selector: 'app-onboarding',
   standalone: true,
-  imports: [CommonModule, DynamicTableModule, MatButtonModule, MatIconModule, FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, ReactiveFormsModule, _MatCheckboxRequiredValidatorModule, MatCardModule],
+  imports: [CommonModule, DynamicTableModule, MatButtonModule, MatIconModule, FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, ReactiveFormsModule, _MatCheckboxRequiredValidatorModule, MatCardModule, MatDialogModule],
   templateUrl: './onboarding.component.html',
   styleUrls: ['./onboarding.component.scss']
 })
 export class OnboardingComponent implements OnInit {
 
   columnSpecs: ColumnSpec<IRegistration>[] = [
+    {
+      displayedColumn: 'hasTeam',
+      header: 'Angelegt',
+      width: '100px'
+    },
     {
       displayedColumn: 'player1',
       header: 'Spieler 1'
@@ -36,7 +40,8 @@ export class OnboardingComponent implements OnInit {
     },
     {
       displayedColumn: 'active',
-      header: 'Aktiv'
+      header: 'Aktiv',
+      width: '100px'
     },
     {
       displayedColumn: 'email',
@@ -56,29 +61,16 @@ export class OnboardingComponent implements OnInit {
     },
     {
       displayedColumn: 'apply',
-      header: 'Übernehmen'
+      header: 'Übernehmen',
+      width: '150px'
     }
   ];
 
-  currentRegistration: IRegistration | undefined = undefined;
-
   registrations: IRegistration[] = [];
-
-  teamForm = new FormGroup({
-    teamFirstMember: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
-    teamSecondMember: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
-    uuid: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
-    startblock: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
-    email: new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
-    boxId: new FormControl<number | null>(null, {validators: [Validators.required]}),
-  });
-
-  encodedURL: string | undefined;
 
   constructor(
     private registrationService: RegistrationService,
-    private teamService: TeamService,
-    private toastr: ToastrService
+    private dialog: MatDialog
   ) {
   }
 
@@ -86,57 +78,15 @@ export class OnboardingComponent implements OnInit {
     this.registrationService.getRegistrations().subscribe(registrations => {
       this.registrations = registrations;
     });
+  }
 
-    const channel = new BroadcastChannel('qr-login');
-    channel.onmessage = (event) => {
-      if (event.data === 'initialized') {
-        this.sendMessageToQrLogin();
+  openTeamDialog(registration: IRegistration): void {
+    this.dialog.open(TeamDialogComponent,
+      {
+        data: registration,
+        minWidth: '50%',
+        minHeight: '50%'
       }
-    };
-  }
-
-  sendMessageToQrLogin() {
-    const channel = new BroadcastChannel('qr-login');
-    channel.postMessage({encodedURL: this.encodedURL});
-  }
-
-  fillTeam(registration: IRegistration): void {
-    this.currentRegistration = registration;
-    this.teamForm.patchValue({
-      ...registration,
-      teamFirstMember: registration.player1,
-      teamSecondMember: registration.player2,
-      startblock: (registration.startblock as any).name
-    });
-  }
-
-  createTeam() {
-    this.teamService.create(this.teamForm.getRawValue() as ITeam).subscribe(
-      res => {
-        this.currentRegistration = undefined;
-        this.teamForm.reset();
-        this.toastr.success('Das Team ist startklar', 'Prost!');
-      },
-      error => {
-        if (error.error) {
-          this.toastr.error(error.error, 'Fehler');
-        } else {
-          this.toastr.error('Beim anlegen des Teams ist ein unbekannter Fehler aufgetreten', 'Fehler');
-        }
-      }
-    );
-  }
-
-  generateLoginQrCode() {
-    const email = this.teamForm.controls.email.value;
-    const uuid = this.teamForm.controls.uuid.value;
-
-    this.encodedURL = window.location.origin + `/login/?username=${email}&uuid=${uuid}`;
-
-    // Open new window
-    window.open(
-      window.location.origin + '/qr-login',
-      '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'
     );
   }
 }
