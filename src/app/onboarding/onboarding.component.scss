@@ -18,3 +18,9 @@
 .red {
   color: #e30413;
 }
+
+.action-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}

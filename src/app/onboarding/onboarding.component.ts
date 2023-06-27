@@ -14,6 +14,8 @@ import {RegistrationService} from '../shared/service/backend/registration/regist
 import {MatCardModule} from '@angular/material/card';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {TeamDialogComponent} from './team-dialog/team-dialog.component';
+import {CheckOutService} from '../shared/service/backend/check-out/check-out.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-onboarding',
@@ -28,7 +30,7 @@ export class OnboardingComponent implements OnInit {
     {
       displayedColumn: 'hasTeam',
       header: 'Angelegt',
-      width: '100px'
+      width: '5%'
     },
     {
       displayedColumn: 'player1',
@@ -41,7 +43,7 @@ export class OnboardingComponent implements OnInit {
     {
       displayedColumn: 'active',
       header: 'Aktiv',
-      width: '100px'
+      width: '5%'
     },
     {
       displayedColumn: 'email',
@@ -62,7 +64,7 @@ export class OnboardingComponent implements OnInit {
     {
       displayedColumn: 'apply',
       header: 'Übernehmen',
-      width: '150px'
+      width: '10%'
     }
   ];
 
@@ -70,7 +72,9 @@ export class OnboardingComponent implements OnInit {
 
   constructor(
     private registrationService: RegistrationService,
-    private dialog: MatDialog
+    private checkOutService: CheckOutService,
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) {
   }
 
@@ -86,6 +90,15 @@ export class OnboardingComponent implements OnInit {
         data: registration,
         minWidth: '50%',
         minHeight: '50%'
+      }
+    );
+  }
+
+  checkOut(registration: IRegistration) {
+    this.checkOutService.checkOut(registration.uuid).subscribe(
+      () => this.toastr.success('Die Zielzeit wurde gespeichert', 'Ausgecheckt'),
+      error => {
+        this.toastr.error(error, 'Fehler');
       }
     );
   }

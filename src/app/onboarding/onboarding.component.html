@@ -35,9 +35,18 @@
     </ng-template>
 
     <ng-template [gpxCustomColumn]="'apply'" let-registration>
-      <button (click)="openTeamDialog(registration)" mat-raised-button [disabled]="!registration.active">
-        <mat-icon>start</mat-icon>
-      </button>
+      <div class="action-container">
+        <button (click)="openTeamDialog(registration)"
+                [disabled]="!registration.active"
+                mat-icon-button>
+          <mat-icon>start</mat-icon>
+        </button>
+        <button (click)="checkOut(registration)"
+                [disabled]="!registration.hasTeam"
+                mat-icon-button>
+          <mat-icon>sports_score</mat-icon>
+        </button>
+      </div>
     </ng-template>
   </gpx-dynamic-table>
 </div>

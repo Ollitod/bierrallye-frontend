@@ -18,12 +18,14 @@ export class CheckOutService {
   ) {
   }
 
-  checkOut(url: string): Observable<ITeam> {
-    console.log(url);
+  checkOut(uuid?: string): Observable<ITeam> {
+    return this.http.post<ITeam>(this.endpoint, uuid);
+  }
+
+  validatedCheckOut(url: string): Observable<ITeam> {
     if (url !== this.endpoint) {
       return throwError(() => 'QR-Code nicht gültig!');
     }
-    console.log(this.userService.user.value);
-    return this.http.post<ITeam>(this.endpoint, this.userService.user.value?.uuid);
+    return this.checkOut(this.userService.user.value?.uuid);
   }
 }

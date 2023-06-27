@@ -73,7 +73,7 @@ export class RaceComponent implements OnInit, OnDestroy {
 
   checkOut(url: string) {
     this.scannerOpenCheckout = false;
-    this.checkOutService.checkOut(url).subscribe(
+    this.checkOutService.validatedCheckOut(url).subscribe(
       team => {
         this.team = team;
         this.toastr.success('Glückwunsch! Ihr seid angekommen', 'Ausgecheckt')
