@@ -35,7 +35,8 @@ export class OnboardingComponent implements OnInit {
     },
     {
       displayedColumn: 'active',
-      header: 'Aktiv'
+      header: 'Aktiv',
+      width: '75px'
     },
     {
       displayedColumn: 'email',
@@ -55,7 +56,8 @@ export class OnboardingComponent implements OnInit {
     },
     {
       displayedColumn: 'apply',
-      header: 'Übernehmen'
+      header: 'Übernehmen',
+      width: '150px'
     }
   ];
 

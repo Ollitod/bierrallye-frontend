@@ -1,7 +1,8 @@
 <div class="container">
   <gpx-dynamic-table [columnSpecs]="columnSpecs"
                      [columnsExcludedFromSort]="['drink1', 'drink2', 'startblock', 'apply']"
-                     [data]="registrations">
+                     [data]="registrations"
+                     [pageSizeOptions]="[15, 30, 50, 100]">
 
     <ng-template [gpxCustomColumn]="'active'" let-registration>
       <ng-container *ngIf="registration.active">
