@@ -1,65 +1,4 @@
 <div class="container">
-  <ng-container *ngIf="currentRegistration">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Team anlegen</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form [formGroup]="teamForm">
-          <div class="form-container">
-            <div class="form-row">
-              <mat-form-field>
-                <mat-label>Spieler 1</mat-label>
-                <input formControlName="teamFirstMember" id="teamFirstMember" matInput>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Spieler 2</mat-label>
-                <input formControlName="teamSecondMember" id="teamSecondMember" matInput>
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input formControlName="email" id="email" matInput>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Startblock</mat-label>
-                <input formControlName="startblock" id="startblock" matInput>
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field>
-                <mat-label>UUID</mat-label>
-                <input formControlName="uuid" id="uuid" matInput>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Box-Nr.</mat-label>
-                <input #boxId formControlName="boxId" id="boxId" matInput>
-              </mat-form-field>
-            </div>
-
-            <div class="button-container">
-              <button (click)="generateLoginQrCode()"
-                      color="accent"
-                      mat-raised-button>
-                QR-Code generieren
-              </button>
-              <button (click)="createTeam()"
-                      [disabled]="!teamForm.valid"
-                      color="primary"
-                      mat-raised-button
-                      type="submit">
-                Team erstellen
-              </button>
-            </div>
-          </div>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </ng-container>
-
   <gpx-dynamic-table [columnSpecs]="columnSpecs"
                      [columnsExcludedFromSort]="['drink1', 'drink2', 'startblock', 'apply']"
                      [data]="registrations">
@@ -86,7 +25,7 @@
     </ng-template>
 
     <ng-template [gpxCustomColumn]="'apply'" let-registration>
-      <button (click)="fillTeam(registration)" mat-raised-button [disabled]="!registration.active">
+      <button (click)="openTeamDialog(registration)" mat-raised-button [disabled]="!registration.active">
         <mat-icon>start</mat-icon>
       </button>
     </ng-template>
