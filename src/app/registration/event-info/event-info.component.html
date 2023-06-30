@@ -1,0 +1,15 @@
+<div class="black-box description">
+  <p>Samstag, 1. Juli 2023</p>
+  <p>ab 13 Uhr</p>
+  <p>Sportplatz Irnfritz</p>
+  <a *ngIf="APP_MODE === 'preEvent'"
+     href="#user-interaction"
+     mat-raised-button>
+    zur Anmeldung
+  </a>
+  <button *ngIf="APP_MODE === 'postEvent'"
+          [routerLink]="'/evaluation'"
+          mat-raised-button>
+    zur Auswertung
+  </button>
+</div>

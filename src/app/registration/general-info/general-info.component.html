@@ -1,11 +1,6 @@
 <div class="grid-container">
-  <div class="black-box description">
-    <p>Samstag, 1. Juli 2023</p>
-    <p>ab 13 Uhr</p>
-    <p>Sportplatz Irnfritz</p>
-    <a href="#user-interaction" mat-raised-button>zur Anmeldung</a>
-  </div>
-  <div class="flex-column">
+  <app-event-info/>
+  <div *ngIf="APP_MODE === 'preEvent'" class="flex-column">
     <div class="header">
       <p>Bier-Rallye Vol. 5</p>
     </div>
@@ -14,6 +9,22 @@
         Bereits zum 5. mal wagen wir uns gemeinsam mit euch auf die wohl flüssigste Rennstrecke
         im Waldviertel und darüber hinaus! Wie schon die Jahre zuvor werden die idyllischen Wälder rund um unsere
         wunderschöne Heimat zu einem Schauplatz voller Action, Spaß und unverantwortlichem Alkoholkonsum.
+      </p>
+    </div>
+  </div>
+  <div *ngIf="APP_MODE === 'postEvent'" class="flex-column">
+    <div class="header">
+      <p>This was Bierrallye Vol. 5</p>
+    </div>
+    <div class="description">
+      <p>
+        Wir bedanke uns für Eure Teilnahme und hoffen, ihr hattet genau so viel Spaß wie wir!
+      </p>
+      <p>
+        Über den Button "zur Auswertung" könnt ihr das Endergebnis jederzeit abrufen.
+      </p>
+      <p>
+        Bis zum nächsten Jahr & stay tuned ;)
       </p>
     </div>
   </div>

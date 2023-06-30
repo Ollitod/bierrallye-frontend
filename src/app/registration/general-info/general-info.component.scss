@@ -9,20 +9,6 @@
   box-sizing: border-box;
 }
 
-.black-box {
-  grid-column: 1 / 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: $bierrallye-black;
-  color: $bierrallye-lightbrown;
-  padding: 15px;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  box-sizing: border-box;
-}
-
 .flex-column {
   width: 100%;
   grid-column: 2 / 3;
@@ -53,10 +39,6 @@
   }
 
   .flex-column {
-    gap: 10px;
-  }
-
-  .black-box {
     gap: 10px;
   }
 }

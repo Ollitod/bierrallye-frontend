@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {GeneralInfoComponent} from './general-info/general-info.component';
 import {HardfactsComponent} from './hardfacts/hardfacts.component';
 import {UserInteractionComponent} from './user-interaction/user-interaction.component';
+import {APP_MODE} from '../shared/service/backend/configuration';
 
 @Component({
   selector: 'app-content',
@@ -13,4 +14,5 @@ import {UserInteractionComponent} from './user-interaction/user-interaction.comp
 })
 export class RegistrationComponent {
 
+  protected readonly APP_MODE = APP_MODE;
 }

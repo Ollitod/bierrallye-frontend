@@ -1,5 +1,7 @@
 <div class="content-wrapper">
   <app-general-info/>
-  <app-hardfacts/>
-  <app-user-interaction/>
+  <ng-container *ngIf="APP_MODE === 'preEvent'">
+    <app-hardfacts/>
+    <app-user-interaction/>
+  </ng-container>
 </div>
