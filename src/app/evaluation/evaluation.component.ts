@@ -5,6 +5,7 @@ import {IEvaluation} from '../shared/model/evaluation.model';
 import {ColumnSpec, ExpandableDynamicTableModule} from 'ngx-gepardec-mat';
 import {IStationEvaluation} from '../shared/model/station-evaluation.model';
 import {MatCardModule} from '@angular/material/card';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-evaluation',
@@ -21,6 +22,10 @@ export class EvaluationComponent implements OnInit {
     {
       displayedColumn: 'boxId',
       header: 'Box-ID'
+    },
+    {
+      displayedColumn: 'position',
+      header: 'Position'
     },
     {
       displayedColumn: 'startTime',
@@ -56,6 +61,8 @@ export class EvaluationComponent implements OnInit {
     }
   ];
 
+  baseIndex = 0;
+
   constructor(
     private evaluationService: EvaluationService
   ) {
@@ -66,5 +73,9 @@ export class EvaluationComponent implements OnInit {
       this.evaluations = evaluations;
       console.log(evaluations);
     });
+  }
+
+  onPageChanged(event: PageEvent) {
+    this.baseIndex = event.pageSize * event.pageIndex;
   }
 }
