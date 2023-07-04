@@ -26,7 +26,7 @@
     "@zxing/ngx-scanner": "^16.0.1",
     "angular-cli-ghpages": "^1.0.6",
     "kjua-svg": "^1.13.1",
-    "ngx-gepardec-mat": "^1.0.2",
+    "ngx-gepardec-mat": "^16.0.1",
     "ngx-kjua": "^16.0.0",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
