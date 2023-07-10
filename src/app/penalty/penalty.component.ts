@@ -90,16 +90,30 @@ export class PenaltyComponent implements OnInit {
   }
 
   createPenalty() {
+    const boxId = this.penaltyForm.controls.boxId.getRawValue();
     this.penaltyService.createPenalty(this.penaltyForm.getRawValue() as IPenalty).subscribe(
       response => {
         this.formDirective?.resetForm();
         this.patchStationId();
+        this.removeTeamsFromSelectionModels(boxId);
         this.toastr.success(response, 'Erfolgreich');
       },
       error => {
         this.toastr.error(error.error, 'Fehler');
       }
     );
+  }
+
+  private removeTeamsFromSelectionModels(boxId: number | null) {
+    // remove from team selection model
+    this.teams = [
+      ...this.teams.filter(team => team.boxId !== boxId)
+    ]
+
+    // remove from boxId selection model
+    this.extractedBoxIds = [
+      ...this.extractedBoxIds.filter(extractedBoxId => extractedBoxId !== boxId)
+    ]
   }
 
   back(): void {
