@@ -1,12 +1,4 @@
-<div *ngIf="!showForm" class="station-container">
-  <mat-action-list>
-    <mat-list-item (click)="initPenaltyForm(station.stationId)" *ngFor="let station of stations">
-      {{station.stationName}}
-    </mat-list-item>
-  </mat-action-list>
-</div>
-
-<mat-card *ngIf="showForm">
+<mat-card>
   <mat-card-header>
     <mat-card-title>Strafminuten erfassen</mat-card-title>
   </mat-card-header>
@@ -15,12 +7,7 @@
       <div class="form-container">
         <mat-form-field>
           <mat-label>Station</mat-label>
-          <mat-select formControlName="stationId" id="stationId">
-            <mat-option *ngFor="let station of stations"
-                        [value]="station.stationId">
-              {{station.stationName}}
-            </mat-option>
-          </mat-select>
+          <input type="number" matInput formControlName="stationId" id="stationId">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Team</mat-label>

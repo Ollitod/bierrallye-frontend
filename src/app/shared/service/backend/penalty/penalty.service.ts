@@ -20,8 +20,8 @@ export class PenaltyService {
     return this.http.get<IStation[]>(BASE_API_URL + 'penalty/stations');
   }
 
-  getTeams(): Observable<ITeam[]> {
-    return this.http.get<ITeam[]>(BASE_API_URL + 'penalty/teams');
+  getTeamsByStationId(stationId?: number): Observable<ITeam[]> {
+    return this.http.get<ITeam[]>(BASE_API_URL + `penalty/teams/station/${stationId}`)
   }
 
   createPenalty(penalty: IPenalty): Observable<string> {

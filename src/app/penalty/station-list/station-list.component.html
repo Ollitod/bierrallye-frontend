@@ -1,0 +1,11 @@
+<div class="station-container" *ngIf="!isDetailActive">
+  <mat-action-list>
+    <mat-list-item [routerLink]="['station', station.stationId]"
+                   *ngFor="let station of stations"
+                   (click)="isDetailActive = true">
+      {{station.stationName}}
+    </mat-list-item>
+  </mat-action-list>
+</div>
+
+<router-outlet/>

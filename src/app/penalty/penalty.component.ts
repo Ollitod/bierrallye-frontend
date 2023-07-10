@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {PenaltyService} from '../shared/service/backend/penalty/penalty.service';
 import {ToastrService} from 'ngx-toastr';
-import {IStation} from '../shared/model/station.model';
 import {ITeam} from '../shared/model/team.model';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
@@ -13,6 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-penalty',
@@ -23,10 +23,11 @@ import {MatSelectModule} from '@angular/material/select';
 })
 export class PenaltyComponent implements OnInit {
 
-  stations: IStation[] = [];
-  teams: ITeam[] = [];
+  @ViewChild('formDirective') formDirective: FormGroupDirective | undefined;
 
+  teams: ITeam[] = [];
   extractedBoxIds: number[] = [];
+  stationId: number | undefined;
 
   penaltyForm = new FormGroup({
     stationId: new FormControl<number | null>({value: null, disabled: true}, {nonNullable: false}),
@@ -36,20 +37,30 @@ export class PenaltyComponent implements OnInit {
     comment: new FormControl(''),
   });
 
-  @ViewChild('formDirective') formDirective: FormGroupDirective | undefined;
-
-  selectedStationId: number | undefined;
-  showForm = false;
-
   constructor(
     private penaltyService: PenaltyService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.penaltyService.getStations().subscribe(stations => this.stations = stations);
-    this.penaltyService.getTeams().subscribe(teams => {
+    // retrieve id from active route and update form
+    this.stationId = Number(this.route.snapshot.paramMap.get('id'));
+    this.patchStationId();
+
+    this.penaltyService.getTeamsByStationId(this.stationId).subscribe(teams => {
+      if (teams.length === 0) {
+        this.toastr.warning(
+          `Bei Station ${this.stationId} können keine Strafminuten mehr erfasst werden, da diese bereits alle Teams passiert haben.`,
+          'Keine Erfassung möglich',
+          {
+            progressBar: true
+          }
+        );
+        this.back();
+      }
       this.teams = teams.sort((a, b) => a.teamFirstMember.localeCompare(b.teamFirstMember));
       this.extractedBoxIds = teams.map(team => team.boxId).sort((a, b) => a - b);
     });
@@ -57,10 +68,8 @@ export class PenaltyComponent implements OnInit {
     this.penaltyForm.setValidators((form) => Validators.required(this.penaltyForm.controls.stationId));
   }
 
-  initPenaltyForm(stationId: number) {
-    this.selectedStationId = stationId;
-    this.showForm = true;
-    this.penaltyForm.controls.stationId.patchValue(stationId);
+  private patchStationId() {
+    this.penaltyForm.controls.stationId.patchValue(this.stationId || null);
   }
 
   teamSelectionChange(teamId: number) {
@@ -84,9 +93,7 @@ export class PenaltyComponent implements OnInit {
     this.penaltyService.createPenalty(this.penaltyForm.getRawValue() as IPenalty).subscribe(
       response => {
         this.formDirective?.resetForm();
-        if (this.selectedStationId) {
-          this.penaltyForm.controls.stationId.patchValue(this.selectedStationId);
-        }
+        this.patchStationId();
         this.toastr.success(response, 'Erfolgreich');
       },
       error => {
@@ -96,7 +103,6 @@ export class PenaltyComponent implements OnInit {
   }
 
   back(): void {
-    this.penaltyForm.reset();
-    this.showForm = false;
+    this.router.navigate(['/penalty']);
   }
 }

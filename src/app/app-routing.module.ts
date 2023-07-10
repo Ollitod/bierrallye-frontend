@@ -2,6 +2,14 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {authGuard} from './shared/guards/auth/auth.guard';
+import {PenaltyComponent} from './penalty/penalty.component';
+
+export const penaltyChildren: Routes = [
+  {
+    path: 'station/:id',
+    component: PenaltyComponent
+  }
+];
 
 const routes: Routes = [
   {
@@ -41,7 +49,8 @@ const routes: Routes = [
   },
   {
     path: 'penalty',
-    loadComponent: () => import('./penalty/penalty.component').then(c => c.PenaltyComponent)
+    loadComponent: () => import('./penalty/station-list/station-list.component').then(c => c.StationListComponent),
+    children: penaltyChildren
   },
   {
     path: 'qr-login',

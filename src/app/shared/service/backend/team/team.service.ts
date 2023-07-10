@@ -21,6 +21,6 @@ export class TeamService {
   }
 
   get(uuid?: string): Observable<ITeam> {
-    return this.http.get<ITeam>(`https://bierrallye.meinhard.at/track/team/${uuid}`);
+    return this.http.get<ITeam>(BASE_API_URL + `track/team/${uuid}`);
   }
 }
