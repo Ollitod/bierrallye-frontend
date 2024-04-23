@@ -1,0 +1,76 @@
+@import "src/styles/colors";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 50%;
+  box-sizing: border-box;
+  background-color: $bierrallye-black;
+  color: $bierrallye-lightbrown;
+  align-items: center;
+  padding: 2rem;
+}
+
+.plan-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  color: $bierrallye-gold;
+}
+
+.sub-header {
+  font-size: 2.5rem;
+  line-height: normal;
+  text-align: center;
+}
+
+.plan-table {
+  width: 100%;
+
+  tr {
+
+  }
+
+  tr {
+    height: 100px;
+  }
+}
+
+.month {
+  font-size: 1.5rem;
+  line-height: normal;
+}
+
+.step-column {
+  width: 15%;
+  color: $bierrallye-gold;
+  font-family: Ultra, serif;
+  font-size: 6rem;
+}
+
+.description-column {
+  width: 85%;
+  padding-top: 1rem;
+}
+
+@media only screen and (max-width: 1620px) {
+  .header {
+    font-size: 2rem;
+  }
+
+  .sub-header {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 1170px) {
+  :host {
+    width: 100%;
+  }
+}

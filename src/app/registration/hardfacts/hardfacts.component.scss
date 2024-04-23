@@ -1,5 +1,9 @@
 @import "src/styles/colors";
 
+:host {
+  background-color: $bierrallye-lightbrown;
+}
+
 .flex-container {
   display: flex;
   flex-direction: column;

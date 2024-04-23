@@ -1,15 +1,16 @@
 @import "src/styles/colors";
 
 .banner {
-  background-color: $bierrallye-black;
-  display: flex;
-  justify-content: center;
+  width: 100%; /* Set container width to 100% */
+  max-width: 100%; /* Ensure image doesn't exceed container width */
+  overflow: hidden; /* Hide any overflow from the image */
   cursor: pointer;
-  overflow: hidden;
 }
 
-.small-banner {
-  display: none;
+.banner img {
+  display: block; /* Ensure the image behaves as a block element */
+  width: 100%; /* Set image width to fill container width */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .user-info {
@@ -21,24 +22,4 @@
   box-sizing: border-box;
   gap: 15px;
   padding: 15px 15px 0 15px;
-}
-
-@media only screen and (max-width: 1360px) {
-  .banner {
-    height: 25%;
-  }
-}
-
-@media only screen and (max-width: 844px) {
-  .banner {
-    height: auto;
-  }
-
-  .large-banner {
-    display: none;
-  }
-
-  .small-banner {
-    display: block;
-  }
 }
